@@ -4,7 +4,7 @@
 
 | Task ID | Description | Priority | Effort (days) | Dependencies | Tools | Acceptance Criteria | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| A1 | Инициализировать проект | High | 1 | None | Composer, Laravel, Vue, Vite | Проект собирается успешно, структура директорий создана | Open |
+| A1 | Инициализировать проект | High | 1 | None | Composer, Laravel, Vue, Vite | Проект собирается успешно, структура директорий создана | Completed ✅ |
 | A2 | Настроить CI пайплайн | High | 1.5 | A1 | GitHub Actions | CI запускается на PR, все шаги проходят | Open |
 | A3 | Настроить Docker окружение | High | 1 | A1 | Docker, Docker Compose | Приложение запускается в Docker, доступно по http://localhost | Open |
 | A4 | Настроить инструменты качества кода | High | 1 | A1 | PHPStan, PHP-CS-Fixer | PHPStan level 9 настроен, PHP-CS-Fixer применяется | Open |
