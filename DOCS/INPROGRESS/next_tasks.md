@@ -2,7 +2,7 @@
 
 ## Ready to Start
 
-- [ ] Task A2: Настроить CI пайплайн
+- [ ] Task A2-Fix-Artisan: Исправление пути к artisan в CI
 - [ ] Task A3: Настроить Docker окружение
 - [ ] Task A4: Настроить инструменты качества кода
 - [ ] Task A5: Создать структуру Domain Layer
