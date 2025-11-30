@@ -9,8 +9,8 @@
 | A3 | Настроить Docker окружение | High | 1 | A1 | Docker, Docker Compose | Приложение запускается в Docker, доступно по http://localhost | Completed ✅ |
 | A4 | Настроить инструменты качества кода | High | 1 | A1 | PHPStan, PHP-CS-Fixer | PHPStan level 9 настроен, PHP-CS-Fixer применяется | Completed ✅ |
 | A5 | Создать структуру Domain Layer | High | 0.5 | A1 | PHP | Директории Domain/UseCases, Domain/Models созданы | Completed ✅ |
-| A6 | Создать структуру Infrastructure Layer | High | 0.5 | A1 | PHP | Директории Infrastructure/Repositories, Infrastructure/Http созданы | Open |
-| A7 | Создать структуру Frontend | High | 0.5 | A1 | Vue, Vite | Директории frontend/src/components, frontend/src/services созданы | Open |
+| A6 | Создать структуру Infrastructure Layer | High | 0.5 | A1 | PHP | Директории Infrastructure/Repositories, Infrastructure/Http созданы | Completed ✅ |
+| A7 | Создать структуру Frontend | High | 0.5 | A1 | Vue, Vite | Директории frontend/src/components, frontend/src/services созданы | Completed ✅ |
 | A8 | Обновить зависимости проекта | Medium | 0.5 | A1 | npm, composer | Все зависимости проверены и обновлены до актуальных версий, тесты проходят | Open |
 | A9 | Обновить Xdebug в Dockerfile | Medium | 0.25 | A3 | Docker | Xdebug обновлен до последней версии 3.x, Docker образ собирается | Open |
 | A10 | Создать Dockerfile.dev для разработки | High | 0.5 | A3 | Docker | Dockerfile.dev создан, содержит PHP 8.3-cli, Composer, Xdebug | Open |
