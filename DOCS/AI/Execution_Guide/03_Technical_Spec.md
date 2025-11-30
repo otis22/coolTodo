@@ -391,7 +391,8 @@ CREATE TABLE todos (
 ### DevOps
 
 **Docker**:
-- PHP 8.3 FPM
+- PHP 8.3 FPM (production)
+- PHP 8.3 CLI (development)
 - Nginx
 - MySQL 8.0
 - Node.js для фронтенда
@@ -400,6 +401,20 @@ CREATE TABLE todos (
 - CI пайплайн
 - Автоматические тесты
 - Code quality checks
+
+### Development Environment
+
+**Изоляция инструментов разработки**:
+- Все инструменты разработки работают только в Docker-контейнерах
+- Локальная машина не требует установки PHP, Composer, линтеров
+- Контейнер `app`: PHP 8.3-cli, Composer, PHPUnit, Laravel, Xdebug
+- Контейнер `tools`: PHPStan, PHP-CS-Fixer
+- Настройка прав доступа через UID/GID пользователя хоста
+- Синхронизация файлов через Docker volumes с оптимизацией для macOS (`:cached`)
+
+**Helper-скрипты**:
+- Скрипт `dev` для упрощения работы с контейнерами
+- Команды: `composer`, `php`, `artisan`, `phpunit`, `phpstan`, `cs-fix`, `shell`
 
 ## Database Migrations
 

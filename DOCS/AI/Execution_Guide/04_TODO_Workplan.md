@@ -13,6 +13,11 @@
 | A7 | Создать структуру Frontend | High | 0.5 | A1 | Vue, Vite | Директории frontend/src/components, frontend/src/services созданы | Open |
 | A8 | Обновить зависимости проекта | Medium | 0.5 | A1 | npm, composer | Все зависимости проверены и обновлены до актуальных версий, тесты проходят | Open |
 | A9 | Обновить Xdebug в Dockerfile | Medium | 0.25 | A3 | Docker | Xdebug обновлен до последней версии 3.x, Docker образ собирается | Open |
+| A10 | Создать Dockerfile.dev для разработки | High | 0.5 | A3 | Docker | Dockerfile.dev создан, содержит PHP 8.3-cli, Composer, Xdebug | Open |
+| A11 | Создать Dockerfile.tools для инструментов анализа | High | 0.5 | A3 | Docker | Dockerfile.tools создан, содержит PHPStan и PHP-CS-Fixer | Open |
+| A12 | Настроить права доступа в Docker контейнерах | High | 0.25 | A10, A11 | Docker | Контейнеры работают от имени пользователя хоста, файлы создаются с правильными правами | Open |
+| A13 | Создать helper-скрипты для разработки | Medium | 0.25 | A12 | Bash | Скрипт `dev` создан, все команды работают | Open |
+| A14 | Обновить документацию по разработке | Medium | 0.25 | A13 | Markdown | README.md и DOCS/DEVELOPMENT.md обновлены | Open |
 
 ## Phase B: Core Features (Основной функционал)
 
