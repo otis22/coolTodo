@@ -1,6 +1,6 @@
 # Task A21: Исправить путь к larastan extension.neon в phpstan.neon
 
-**Статус**: In Progress  
+**Статус**: Completed ✅  
 **Приоритет**: High  
 **Оценка**: 0.1 дня
 
@@ -56,6 +56,25 @@ includes:
 
 - [x] A16: Исправить расположение composer.json (Completed ✅)
 - [x] A17: Исправить пути в CI для PHPUnit (Completed ✅)
+
+## Реализация
+
+### Попытка 1: Исправление пути в phpstan.neon (УСПЕШНАЯ)
+
+**Коммит**: `096a6db`  
+**Изменения**:
+- `./vendor/larastan/larastan/extension.neon` → `backend/vendor/larastan/larastan/extension.neon`
+
+**Обоснование**: Пути в `phpstan.neon` разрешаются относительно расположения самого файла (корень проекта), а vendor находится в `backend/vendor/`.
+
+**Результат проверки** (Workflow run `19802370120` - completed, success):
+- ✅ PHPStan запустился успешно
+- ✅ PHPStan нашел `extension.neon`: нет ошибок о missing/not readable
+- ✅ PHPStan выполнил анализ: `11/11 [▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓] 100%`
+- ⚠️ Предупреждение: `Ignored error pattern #PHPDoc tag @var# was not matched in reported errors` (не критично, это предупреждение о неиспользуемом паттерне игнорирования)
+- ⚠️ Предупреждение: `You're using a deprecated config option checkMissingIterableValueType` (не критично, это устаревшая опция)
+
+**Вывод**: Задача A21 полностью решена! ✅ Путь к extension.neon исправлен, PHPStan работает корректно.
 
 ## Связанные задачи
 
