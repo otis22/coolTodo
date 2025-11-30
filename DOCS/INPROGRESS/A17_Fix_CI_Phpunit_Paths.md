@@ -93,6 +93,25 @@
 
 **Ожидание**: Проверка результата в GitHub Actions workflow.
 
+### Проблема с текущим решением
+
+**Важно**: PHPUnit разрешает пути в конфигурационном файле относительно расположения самого конфигурационного файла, а не относительно рабочей директории, из которой запускается команда.
+
+**Текущая ситуация**:
+- `phpunit.xml` находится в корне проекта
+- PHPUnit запускается из `backend/` с `--configuration=../phpunit.xml`
+- Все пути в `phpunit.xml` разрешаются относительно корня проекта (где находится phpunit.xml)
+
+**Проблемы с текущими путями**:
+1. `bootstrap="vendor/autoload.php"` → ищет `vendor/autoload.php` в корне проекта, но он находится в `backend/vendor/autoload.php`
+2. `<directory>src</directory>` → ищет `src/` в корне проекта, но он находится в `backend/src/`
+3. `<directory>../tests/Unit</directory>` → правильно, ищет `tests/Unit` в корне проекта
+
+**Решение**: Исправить пути относительно расположения `phpunit.xml` (корень проекта):
+- `bootstrap="backend/vendor/autoload.php"` (относительно корня)
+- `<directory>backend/src</directory>` (относительно корня)
+- `<directory>../tests/Unit</directory>` → `<directory>tests/Unit</directory>` (относительно корня)
+
 ## Связанные задачи
 
 - A16: Исправить расположение composer.json (привело к несоответствию путей)
