@@ -12,6 +12,7 @@ services:
     volumes:
       - ./backend:/var/www/html:cached
       - ./backend/vendor:/var/www/html/vendor
+      - ./phpunit.xml:/var/www/html/../phpunit.xml:ro
     environment:
       - COMPOSER_HOME=/var/www/html/.composer
     networks:
@@ -30,6 +31,8 @@ services:
     volumes:
       - ./backend:/var/www/html:cached
       - ./backend/vendor:/var/www/html/vendor
+      - ./phpstan.neon:/var/www/html/../phpstan.neon:ro
+      - ./phpunit.xml:/var/www/html/../phpunit.xml:ro
     networks:
       - cooltodo
 

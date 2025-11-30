@@ -24,24 +24,27 @@
 | A20 | Исправить скрипт post-autoload-dump в composer.json | High | 0.1 | A16 | Composer, Laravel | composer install выполняется успешно, пакеты обнаруживаются | Completed ✅ |
 | A21 | Исправить путь к larastan extension.neon в phpstan.neon | High | 0.1 | A17 | PHPStan, CI | PHPStan находит extension.neon, запускается без ошибок | Completed ✅ |
 | A22 | Исправить форматирование кода PHP-CS-Fixer | Low | 0.25 | A11, A13 | PHP-CS-Fixer | PHP-CS-Fixer не находит файлов для исправления | Open |
+| A23 | Исправить права доступа для composer install | High | 0.25 | A12, A16 | Docker, Composer | composer install выполняется успешно, vendor принадлежит пользователю хоста | Open |
+| A24 | Исправить пути в конфигурации PHPStan | Medium | 0.25 | A11, A13 | PHPStan | PHPStan работает в Docker контейнере, анализирует все файлы | Open |
+| A25 | Исправить пути к конфигурационным файлам в скрипте dev | High | 0.25 | A13, A17, A21 | Bash, Docker | PHPUnit и PHPStan работают с правильными конфигурациями через ./dev | In Progress |
 
 ## Phase B: Core Features (Основной функционал)
 
 | Task ID | Description | Priority | Effort (days) | Dependencies | Tools | Acceptance Criteria | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| B1 | Создать модели данных (Task, TaskStatus) | High | 2 | A5 | PHP, PHPUnit | Модели созданы, покрыты тестами, PHPStan level 9 | Open |
+| B1 | Создать модели данных (Task, TaskStatus) | High | 2 | A5 | PHP, PHPUnit | Модели созданы, покрыты тестами (TDD: Red-Green-Refactor), PHPStan level 9 | Open |
 | B2 | Создать миграции БД | High | 1 | B1 | Laravel Migrations | Таблица todos создана, миграция обратима | Open |
-| B3 | Реализовать TodoRepository | High | 2 | B1, B2 | PHP, Eloquent, PHPUnit | Repository реализован, покрыт тестами | Open |
-| B4 | Реализовать Use Cases (Create, Update, Delete, Toggle) | High | 3 | B1, B3 | PHP, PHPUnit | Все Use Cases реализованы, покрыты тестами >90% | Open |
-| B5 | Реализовать API контроллеры | High | 2 | B4 | Laravel, PHPUnit | Все endpoints работают, покрыты feature тестами | Open |
-| B6 | Реализовать валидацию запросов | High | 1 | B5 | Laravel Requests | Валидация работает, тесты проходят | Open |
+| B3 | Реализовать TodoRepository | High | 2 | B1, B2 | PHP, Eloquent, PHPUnit | Repository реализован, покрыт тестами (TDD: Red-Green-Refactor) | Open |
+| B4 | Реализовать Use Cases (Create, Update, Delete, Toggle) | High | 3 | B1, B3 | PHP, PHPUnit | Все Use Cases реализованы, покрыты тестами >90% (TDD: Red-Green-Refactor) | Open |
+| B5 | Реализовать API контроллеры | High | 2 | B4 | Laravel, PHPUnit | Все endpoints работают, покрыты feature тестами (TDD: Red-Green-Refactor) | Open |
+| B6 | Реализовать валидацию запросов | High | 1 | B5 | Laravel Requests | Валидация работает, тесты проходят (TDD: Red-Green-Refactor) | Open |
 | B7 | Настроить API routes | High | 0.5 | B5 | Laravel Routes | Все routes зарегистрированы, работают | Open |
 
 ## Phase C: Frontend (Интерфейс)
 
 | Task ID | Description | Priority | Effort (days) | Dependencies | Tools | Acceptance Criteria | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| C1 | Создать API сервис (TodoApiService) | High | 1 | B7 | Vue, Axios/Fetch | Сервис работает, тесты проходят | Open |
+| C1 | Создать API сервис (TodoApiService) | High | 1 | B7 | Vue, Axios/Fetch | Сервис работает, тесты проходят (TDD: Red-Green-Refactor) | Open |
 | C2 | Реализовать компонент TodoItem | High | 2 | C1 | Vue 3, Vite | Компонент отображает задачу, обрабатывает события | Open |
 | C3 | Реализовать компонент TodoList | High | 2 | C2 | Vue 3, Vite | Компонент отображает список, фильтрация работает | Open |
 | C4 | Реализовать фильтрацию (All/Active/Completed) | High | 1 | C3 | Vue 3 | Фильтрация работает на клиенте | Open |
@@ -54,9 +57,9 @@
 
 | Task ID | Description | Priority | Effort (days) | Dependencies | Tools | Acceptance Criteria | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| D1 | Написать Unit тесты для Domain Layer | High | 3 | B4 | PHPUnit | Покрытие >90%, все тесты проходят | Open |
-| D2 | Написать Integration тесты для API | High | 2 | B7 | PHPUnit, Laravel | Все endpoints покрыты тестами | Open |
-| D3 | Написать E2E тесты (Laravel Dusk) | High | 2 | C8 | Laravel Dusk | Все ключевые сценарии покрыты | Open |
+| D1 | Написать Unit тесты для Domain Layer | High | 3 | B4 | PHPUnit | Покрытие >90%, все тесты проходят (TDD: Red-Green-Refactor) | Open |
+| D2 | Написать Integration тесты для API | High | 2 | B7 | PHPUnit, Laravel | Все endpoints покрыты тестами (TDD: Red-Green-Refactor) | Open |
+| D3 | Написать E2E тесты (Laravel Dusk) | High | 2 | C8 | Laravel Dusk | Все ключевые сценарии покрыты (TDD: Red-Green-Refactor) | Open |
 | D4 | Настроить покрытие кода | High | 0.5 | D1-D3 | PHPUnit, Xdebug | Coverage reports генерируются | Open |
 | D5 | Исправить все предупреждения PHPStan | High | 2 | B4, C8 | PHPStan | PHPStan level 9 без ошибок | Open |
 

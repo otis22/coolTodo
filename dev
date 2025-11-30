@@ -43,11 +43,11 @@ case "$1" in
         ;;
     phpunit)
         shift
-        exec_app vendor/bin/phpunit "$@"
+        exec_app vendor/bin/phpunit --configuration=../phpunit.xml "$@"
         ;;
     phpstan)
         shift
-        exec_tools phpstan analyse "$@"
+        exec_tools phpstan analyse --configuration=../phpstan.neon "$@"
         ;;
     cs-fix)
         shift
