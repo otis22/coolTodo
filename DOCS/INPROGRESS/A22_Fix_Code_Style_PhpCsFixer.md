@@ -1,0 +1,67 @@
+# Task A22: Исправить форматирование кода PHP-CS-Fixer
+
+**Статус**: Open  
+**Приоритет**: Medium  
+**Оценка**: 0.25 дня
+
+## Описание
+
+PHP-CS-Fixer находит 11 файлов, которые не соответствуют стандартам кодирования. В CI это вызывает ошибку (exit code 8), хотя шаг настроен с `continue-on-error: true`, что позволяет workflow продолжиться.
+
+## Проблема
+
+**Файл**: `.github/workflows/ci.yml`  
+**Строка**: 89-92
+
+**Текущая конфигурация**:
+```yaml
+- name: Run PHP-CS-Fixer
+  working-directory: backend
+  run: vendor/bin/php-cs-fixer fix --dry-run --diff --config=../.php-cs-fixer.php
+  continue-on-error: true
+```
+
+**Ошибка в CI**:
+```
+Found 11 of 11 files that can be fixed in 0.048 seconds, 20.00 MB memory used
+##[error]Process completed with exit code 8.
+```
+
+**Причина**: 
+- Код не соответствует стандартам форматирования, определенным в `.php-cs-fixer.php`
+- PHP-CS-Fixer находит файлы, которые требуют исправления
+- Exit code 8 означает, что найдены файлы для исправления
+
+**Затронутые файлы** (из логов):
+- `src/Infrastructure/Http/Controllers/TodoController.php`
+- И еще 10 файлов
+
+## Решение
+
+**Вариант 1 (Рекомендуемый)**: Применить исправления автоматически:
+```bash
+./dev cs-fix
+# или
+docker-compose run --rm tools php-cs-fixer fix --config=../.php-cs-fixer.php
+```
+
+**Вариант 2**: Проверить и исправить вручную каждый файл
+
+**Вариант 3**: Обновить конфигурацию PHP-CS-Fixer, если стандарты слишком строгие
+
+## Критерии приемки
+
+✅ PHP-CS-Fixer не находит файлов для исправления  
+✅ CI шаг "Run PHP-CS-Fixer" проходит без ошибок  
+✅ Код соответствует стандартам форматирования
+
+## Зависимости
+
+- [x] A13: Создать helper-скрипты для разработки (Completed ✅)
+- [x] A11: Создать Dockerfile.tools для инструментов анализа (Completed ✅)
+
+## Связанные задачи
+
+- A4: Настроить инструменты качества кода (PHP-CS-Fixer настроен)
+- A11: Создать Dockerfile.tools (содержит PHP-CS-Fixer)
+
