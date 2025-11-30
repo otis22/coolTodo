@@ -133,7 +133,14 @@ Failed to open stream: No such file or directory in
 
 **Решение**: Исправить путь к vendor в `backend/artisan` или изменить скрипт composer.json. Это блокирует проверку задачи A17.
 
-**Статус проверки**: Workflow run `19801684501` - шаг "Run PHPUnit tests" был пропущен (skipped) из-за ошибки на предыдущем шаге.
+**Статус проверки**: 
+- Workflow run `19801684501` - шаг "Run PHPUnit tests" был пропущен (skipped) из-за ошибки на этапе "Install Composer dependencies"
+- Workflow run `19801888428` - после исправления путей в artisan (задача A20):
+  - ✅ "Install Composer dependencies" проходит успешно
+  - ❌ "Run PHP-CS-Fixer" завершается с ошибкой (exit code 8 - найдены файлы для исправления)
+  - ⏭️ "Run PHPUnit tests" пропущен из-за ошибки в PHP-CS-Fixer
+  
+**Вывод**: Задача A20 разблокировала проверку A17, но PHPUnit все еще не выполняется из-за ошибки в PHP-CS-Fixer. Нужно либо исправить PHP-CS-Fixer, либо временно пропустить этот шаг для проверки PHPUnit.
 
 ## Связанные задачи
 
