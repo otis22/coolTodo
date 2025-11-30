@@ -22,7 +22,8 @@ RUN pecl install xdebug-3.3.0 && docker-php-ext-enable xdebug
 WORKDIR /var/www/html
 
 # Копирование файлов зависимостей
-COPY composer.json composer.lock ./
+COPY composer.json ./
+COPY composer.lock* ./
 
 # Установка зависимостей
 RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
