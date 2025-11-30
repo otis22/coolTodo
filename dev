@@ -45,10 +45,10 @@ case "$1" in
         shift
         exec_app vendor/bin/phpunit --configuration=../phpunit.xml "$@"
         ;;
-    phpstan)
-        shift
-        exec_tools phpstan analyse --configuration=../phpstan.neon "$@"
-        ;;
+        phpstan)
+            shift
+            exec_tools phpstan analyse --configuration=../phpstan.neon --memory-limit=512M "$@"
+            ;;
     cs-fix)
         shift
         exec_tools php-cs-fixer fix --config=../.php-cs-fixer.php "$@"
