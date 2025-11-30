@@ -1,6 +1,6 @@
 # Task A18: Удалить старый composer.json из корня проекта
 
-**Статус**: In Progress  
+**Статус**: Completed ✅  
 **Приоритет**: Medium  
 **Оценка**: 0.1 дня
 
@@ -88,6 +88,17 @@ mv composer.json DOCS/TASK_ARCHIVE/A16_Fix_Composer_Json_Location/
 ✅ Старый `composer.json` удален из корня проекта
 
 **Ожидание**: Проверка, что CI и Docker сборка работают корректно после удаления.
+
+### Проверка через GitHub CLI (gh)
+
+**Workflow run `19802206579`** (completed, success):
+- ✅ `composer install` выполняется успешно в `backend/` директории
+- ✅ CI использует `backend/composer.json` (working-directory: backend)
+- ✅ Нет ошибок о несуществующем composer.json в корне
+- ✅ Все зависимости устанавливаются корректно
+- ✅ Workflow завершился успешно
+
+**Вывод**: Задача A18 полностью решена! ✅
 
 ## Связанные задачи
 
