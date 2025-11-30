@@ -1,0 +1,30 @@
+FROM php:8.3-cli
+
+# Установка системных зависимостей
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Установка Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Установка Xdebug 3.x для отладки (последняя версия)
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+# Настройка рабочей директории
+WORKDIR /var/www/html
+
+# Примечание: Зависимости НЕ устанавливаются на этапе сборки
+# Они будут устанавливаться через volume при запуске контейнера
+# Это позволяет использовать актуальные версии и не пересобирать образ при изменении зависимостей
+
+# Примечание: Оптимизация Laravel НЕ выполняется
+# Это окружение для разработки, где нужны изменения без пересборки
+
