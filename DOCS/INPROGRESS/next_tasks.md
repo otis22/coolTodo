@@ -2,12 +2,8 @@
 
 ## Ready to Start
 
-- [ ] Task A3-Fix-CI: Исправление ошибок в GitHub Actions CI workflow
-- [ ] Task A3: Настроить Docker окружение
-- [ ] Task A4: Настроить инструменты качества кода
-- [ ] Task A5: Создать структуру Domain Layer
-- [ ] Task A6: Создать структуру Infrastructure Layer
-- [ ] Task A7: Создать структуру Frontend
+- [ ] Task A3-Fix-CI: Исправление ошибок в GitHub Actions CI workflow (0.5 дня)
+- [ ] Task A4-Fix-CI-Workflow-Env-Paths: Исправление путей .env в CI workflow (0.5 дня)
 
 ## In Progress
 
@@ -16,13 +12,16 @@
 ## Completed
 
 - [x] Task A1: Инициализировать проект ✅ (заархивирована в DOCS/TASK_ARCHIVE/)
-- [x] Task A2-Fix-Artisan: Исправление пути к artisan в CI ✅
+- [x] Task A2: Настроить CI пайплайн ✅ (заархивирована в DOCS/TASK_ARCHIVE/)
+- [x] Task A2-Fix: Устранение ошибок CI пайплайна (конфликт версий PHPStan) ✅ (заархивирована в DOCS/TASK_ARCHIVE/)
+- [x] Task A2-Fix-Artisan: Исправление пути к artisan в CI ✅ (заархивирована в DOCS/TASK_ARCHIVE/)
 
 ## Blocked
 
 (Заблокированные задачи будут добавлены здесь)
 
-## Completed
+## Notes
 
-(Завершенные задачи будут перемещены в DOCS/TASK_ARCHIVE/)
-
+- Все задачи разбиты на подзадачи по 0.5 дня для лучшего планирования
+- Задачи A3 и A4 могут выполняться параллельно, так как решают разные проблемы
+- После выполнения A3 и A4 CI пайплайн должен работать полностью корректно

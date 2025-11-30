@@ -2,6 +2,7 @@
 
 **Статус**: Completed ✅
 **Начало**: 2025-11-29
+**Завершение**: 2025-01-27
 **Приоритет**: High
 **Оценка**: 0.5 дня
 
@@ -34,39 +35,45 @@ Script @php artisan package:discover --ansi handling the post-autoload-dump even
 - [x] Обновить `composer.json` - изменить пути в скриптах post-autoload-dump
 - [x] Создать файл `backend/artisan` (отсутствовал в проекте)
 - [x] Обновить все скрипты Composer для работы с правильными путями
-- [ ] Запустить CI пайплайн и убедиться, что ошибка исправлена
+- [x] Запустить CI пайплайн и убедиться, что ошибка исправлена
 
 ## Решение
 
-### Вариант 1: Обновить пути в composer.json
+### Реализовано: Обновление путей в composer.json
 
-Изменить скрипты в `composer.json`:
+Исправлены скрипты в `composer.json`:
 ```json
-"post-autoload-dump": [
-    "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-    "@php backend/artisan package:discover --ansi"
-]
+"scripts": {
+    "post-autoload-dump": [
+        "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+        "@php backend/artisan package:discover --ansi"
+    ],
+    "post-update-cmd": [
+        "@php backend/artisan vendor:publish --tag=laravel-assets --ansi --force"
+    ],
+    "post-root-package-install": [
+        "@php -r \"file_exists('backend/.env') || copy('backend/.env.example', 'backend/.env');\""
+    ],
+    "post-create-project-cmd": [
+        "@php backend/artisan key:generate --ansi"
+    ]
+}
 ```
 
-### Вариант 2: Создать симлинк или скопировать artisan
-
-Создать `artisan` в корне проекта, который будет указывать на `backend/artisan`.
-
-### Вариант 3: Обновить CI пайплайн
-
-Изменить рабочую директорию в CI пайплайне на `backend/` перед выполнением composer install.
+Также создан файл `backend/artisan` с правильной структурой для Laravel 11.
 
 ## Критерии приемки
 
 ✅ Composer успешно выполняет post-autoload-dump скрипты
 ✅ CI пайплайн проходит шаг установки зависимостей без ошибок
-✅ Файл `artisan` находится и доступен из корня проекта или пути исправлены
+✅ Файл `artisan` находится и доступен по пути `backend/artisan`
+✅ Все скрипты Composer используют правильные пути
+
+## Результат
+
+Задача выполнена. Все пути в `composer.json` обновлены для работы с нестандартной структурой проекта (Laravel в `backend/` директории). Файл `backend/artisan` создан. CI пайплайн теперь может успешно выполнять composer скрипты.
 
 ## Заметки
 
 Проект использует нестандартную структуру с Laravel в `backend/` директории. Это требует особого внимания к путям в скриптах Composer и CI пайплайне.
-
-
-
-
 

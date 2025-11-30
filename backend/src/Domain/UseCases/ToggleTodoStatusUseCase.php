@@ -15,3 +15,7 @@ class ToggleTodoStatusUseCase
     // Details: Создать метод execute(int $id): Task, который переключает статус задачи (active ↔ completed)
 }
 
+
+
+
+

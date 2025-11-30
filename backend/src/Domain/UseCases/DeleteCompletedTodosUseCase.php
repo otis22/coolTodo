@@ -13,3 +13,7 @@ class DeleteCompletedTodosUseCase
     // Details: Создать метод execute(): int, который удаляет все задачи со статусом 'completed' и возвращает количество удаленных
 }
 
+
+
+
+

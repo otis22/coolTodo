@@ -11,6 +11,8 @@
 | A5 | Создать структуру Domain Layer | High | 0.5 | A1 | PHP | Директории Domain/UseCases, Domain/Models созданы | Open |
 | A6 | Создать структуру Infrastructure Layer | High | 0.5 | A1 | PHP | Директории Infrastructure/Repositories, Infrastructure/Http созданы | Open |
 | A7 | Создать структуру Frontend | High | 0.5 | A1 | Vue, Vite | Директории frontend/src/components, frontend/src/services созданы | Open |
+| A8 | Обновить зависимости проекта | Medium | 0.5 | A1 | npm, composer | Все зависимости проверены и обновлены до актуальных версий, тесты проходят | Open |
+| A9 | Обновить Xdebug в Dockerfile | Medium | 0.25 | A3 | Docker | Xdebug обновлен до последней версии 3.x, Docker образ собирается | Open |
 
 ## Phase B: Core Features (Основной функционал)
 
