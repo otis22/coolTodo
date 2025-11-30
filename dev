@@ -1,0 +1,77 @@
+#!/bin/bash
+
+# Helper скрипт для работы с Docker контейнерами разработки
+# Использование: ./dev <command> [args...]
+
+set -e
+
+# Определяем команду docker compose (может быть docker-compose или docker compose)
+if command -v docker-compose &> /dev/null; then
+    DOCKER_COMPOSE="docker-compose"
+elif docker compose version &> /dev/null; then
+    DOCKER_COMPOSE="docker compose"
+else
+    echo "Ошибка: docker-compose или docker compose не найден"
+    exit 1
+fi
+
+# Функция для выполнения команды в контейнере app
+# Используем run --rm для одноразовых команд (не требует постоянно запущенного контейнера)
+exec_app() {
+    $DOCKER_COMPOSE run --rm app "$@"
+}
+
+# Функция для выполнения команды в контейнере tools
+# Используем run --rm для одноразовых команд (не требует постоянно запущенного контейнера)
+exec_tools() {
+    $DOCKER_COMPOSE run --rm tools "$@"
+}
+
+# Обработка команд
+case "$1" in
+    composer)
+        shift
+        exec_app composer "$@"
+        ;;
+    php)
+        shift
+        exec_app php "$@"
+        ;;
+    artisan)
+        shift
+        exec_app php artisan "$@"
+        ;;
+    phpunit)
+        shift
+        exec_app vendor/bin/phpunit "$@"
+        ;;
+    phpstan)
+        shift
+        exec_tools phpstan analyse "$@"
+        ;;
+    cs-fix)
+        shift
+        exec_tools php-cs-fixer fix "$@"
+        ;;
+    shell)
+        exec_app bash
+        ;;
+    tools-shell)
+        exec_tools bash
+        ;;
+    *)
+        echo "Использование: ./dev <command> [args...]"
+        echo ""
+        echo "Команды:"
+        echo "  composer <command>    - Выполнить composer команду в контейнере app"
+        echo "  php <command>        - Выполнить php команду в контейнере app"
+        echo "  artisan <command>    - Выполнить artisan команду в контейнере app"
+        echo "  phpunit [args]       - Запустить PHPUnit тесты"
+        echo "  phpstan              - Запустить PHPStan анализ"
+        echo "  cs-fix [--dry-run]   - Запустить PHP-CS-Fixer"
+        echo "  shell                - Открыть bash shell в контейнере app"
+        echo "  tools-shell          - Открыть bash shell в контейнере tools"
+        exit 1
+        ;;
+esac
+
