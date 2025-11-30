@@ -20,6 +20,7 @@
 | A14 | Обновить документацию по разработке | Medium | 0.25 | A13 | Markdown | README.md и DOCS/DEVELOPMENT.md обновлены | Completed ✅ |
 | A17 | Исправить пути в CI для PHPUnit | High | 0.25 | A16 | PHPUnit, CI | PHPUnit находит все тесты, coverage генерируется | Completed ✅ |
 | A18 | Удалить старый composer.json из корня проекта | Medium | 0.1 | A16 | Git | Старый composer.json удален, CI работает корректно | Completed ✅ |
+| A19 | Исправить путь к coverage.xml в CI | Low | 0.1 | A17 | CI, Codecov | Coverage.xml генерируется в правильном месте, Codecov находит файл | Completed ✅ |
 | A20 | Исправить скрипт post-autoload-dump в composer.json | High | 0.1 | A16 | Composer, Laravel | composer install выполняется успешно, пакеты обнаруживаются | Completed ✅ |
 
 ## Phase B: Core Features (Основной функционал)
