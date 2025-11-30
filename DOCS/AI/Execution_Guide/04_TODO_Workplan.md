@@ -19,6 +19,7 @@
 | A13 | Создать helper-скрипты для разработки | Medium | 0.25 | A12 | Bash | Скрипт `dev` создан, все команды работают | Completed ✅ |
 | A14 | Обновить документацию по разработке | Medium | 0.25 | A13 | Markdown | README.md и DOCS/DEVELOPMENT.md обновлены | Completed ✅ |
 | A17 | Исправить пути в CI для PHPUnit | High | 0.25 | A16 | PHPUnit, CI | PHPUnit находит все тесты, coverage генерируется | Completed ✅ |
+| A20 | Исправить скрипт post-autoload-dump в composer.json | High | 0.1 | A16 | Composer, Laravel | composer install выполняется успешно, пакеты обнаруживаются | Completed ✅ |
 
 ## Phase B: Core Features (Основной функционал)
 
