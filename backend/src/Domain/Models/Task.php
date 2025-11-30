@@ -9,18 +9,28 @@ namespace App\Domain\Models;
  *
  * @property int $id
  * @property string $title
- * @property string $status
+ * @property TaskStatus $status
  */
 class Task
 {
+    /**
+     * @deprecated Используйте TaskStatus::active() вместо этого
+     */
     public const STATUS_ACTIVE = 'active';
+
+    /**
+     * @deprecated Используйте TaskStatus::completed() вместо этого
+     */
     public const STATUS_COMPLETED = 'completed';
+
+    private TaskStatus $status;
 
     public function __construct(
         private ?int $id,
         private string $title,
-        private string $status = self::STATUS_ACTIVE
+        ?TaskStatus $status = null
     ) {
+        $this->status = $status ?? TaskStatus::active();
     }
 
     public function getId(): ?int
@@ -33,9 +43,22 @@ class Task
         return $this->title;
     }
 
-    public function getStatus(): string
+    /**
+     * Возвращает статус задачи как TaskStatus Value Object.
+     */
+    public function getStatus(): TaskStatus
     {
         return $this->status;
+    }
+
+    /**
+     * Возвращает строковое значение статуса (для обратной совместимости).
+     *
+     * @deprecated Используйте getStatus()->getValue() вместо этого
+     */
+    public function getStatusValue(): string
+    {
+        return $this->status->getValue();
     }
 
     public function updateTitle(string $title): void
@@ -45,19 +68,17 @@ class Task
 
     public function toggleStatus(): void
     {
-        $this->status = $this->status === self::STATUS_ACTIVE
-            ? self::STATUS_COMPLETED
-            : self::STATUS_ACTIVE;
+        $this->status = $this->status->toggle();
     }
 
     public function isCompleted(): bool
     {
-        return $this->status === self::STATUS_COMPLETED;
+        return $this->status->isCompleted();
     }
 
     public function isActive(): bool
     {
-        return $this->status === self::STATUS_ACTIVE;
+        return $this->status->isActive();
     }
 }
 

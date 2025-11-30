@@ -24,9 +24,12 @@
 | A20 | Исправить скрипт post-autoload-dump в composer.json | High | 0.1 | A16 | Composer, Laravel | composer install выполняется успешно, пакеты обнаруживаются | Completed ✅ |
 | A21 | Исправить путь к larastan extension.neon в phpstan.neon | High | 0.1 | A17 | PHPStan, CI | PHPStan находит extension.neon, запускается без ошибок | Completed ✅ |
 | A22 | Исправить форматирование кода PHP-CS-Fixer | Low | 0.25 | A11, A13 | PHP-CS-Fixer | PHP-CS-Fixer не находит файлов для исправления | Open |
-| A23 | Исправить права доступа для composer install | High | 0.25 | A12, A16 | Docker, Composer | composer install выполняется успешно, vendor принадлежит пользователю хоста | Open |
+| A23 | Исправить права доступа для composer install | High | 0.25 | A12, A16 | Docker, Composer | composer install выполняется успешно, vendor принадлежит пользователю хоста | Completed ✅ |
 | A24 | Исправить пути в конфигурации PHPStan | Medium | 0.25 | A11, A13 | PHPStan | PHPStan работает в Docker контейнере, анализирует все файлы | Open |
-| A25 | Исправить пути к конфигурационным файлам в скрипте dev | High | 0.25 | A13, A17, A21 | Bash, Docker | PHPUnit и PHPStan работают с правильными конфигурациями через ./dev | In Progress |
+| A25 | Исправить пути к конфигурационным файлам в скрипте dev | High | 0.25 | A13, A17, A21 | Bash, Docker | PHPUnit и PHPStan работают с правильными конфигурациями через ./dev | Completed ✅ |
+| A26 | Исправить пути PHPStan системно (без поломки CI) | High | 0.5 | A24, A25 | PHPStan, Docker, CI | Одна конфигурация работает и в CI, и локально, без дублирования | Open |
+| A27 | Исправить пути конфигурации PHP-CS-Fixer для Docker | Medium | 0.25 | A11, A13 | PHP-CS-Fixer, Docker | PHP-CS-Fixer работает с правильной конфигурацией в Docker | Open |
+| A28 | Унифицировать пути конфигураций инструментов системно | High | 1 | A26, A27 | PHPUnit, PHPStan, PHP-CS-Fixer, Docker, CI | Все инструменты работают с едиными конфигурациями в CI и локально | Completed ✅ |
 
 ## Phase B: Core Features (Основной функционал)
 

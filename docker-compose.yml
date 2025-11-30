@@ -8,13 +8,12 @@ services:
     container_name: cooltodo_app
     restart: unless-stopped
     user: "${UID:-1000}:${GID:-1000}"
-    working_dir: /var/www/html
+    working_dir: /var/www/project/backend
     volumes:
-      - ./backend:/var/www/html:cached
-      - ./backend/vendor:/var/www/html/vendor
-      - ./phpunit.xml:/var/www/html/../phpunit.xml:ro
+      - .:/var/www/project:cached
+      - ./backend/vendor:/var/www/project/backend/vendor
     environment:
-      - COMPOSER_HOME=/var/www/html/.composer
+      - COMPOSER_HOME=/var/www/project/backend/.composer
     networks:
       - cooltodo
     depends_on:
@@ -27,12 +26,10 @@ services:
     container_name: cooltodo_tools
     restart: unless-stopped
     user: "${UID:-1000}:${GID:-1000}"
-    working_dir: /var/www/html
+    working_dir: /var/www/project/backend
     volumes:
-      - ./backend:/var/www/html:cached
-      - ./backend/vendor:/var/www/html/vendor
-      - ./phpstan.neon:/var/www/html/../phpstan.neon:ro
-      - ./phpunit.xml:/var/www/html/../phpunit.xml:ro
+      - .:/var/www/project:cached
+      - ./backend/vendor:/var/www/project/backend/vendor
     networks:
       - cooltodo
 
@@ -43,7 +40,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./backend:/var/www/html
+      - ./backend:/var/www/project/backend
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
       - cooltodo
