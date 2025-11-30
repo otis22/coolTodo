@@ -1,6 +1,6 @@
 # Task A17: Исправить пути в CI для PHPUnit
 
-**Статус**: Open  
+**Статус**: In Progress  
 **Приоритет**: High  
 **Оценка**: 0.25 дня
 
@@ -80,6 +80,18 @@
 ## Зависимости
 
 - [x] A16: Исправить расположение composer.json (Completed ✅)
+
+## Реализация
+
+✅ Обновлены пути в `phpunit.xml`:
+- Тесты: `tests/Unit` → `../tests/Unit`
+- Тесты: `tests/Feature` → `../tests/Feature`
+- Исходный код: `backend/src` → `src/`
+- Bootstrap: `vendor/autoload.php` (остается, так как относительно backend/)
+
+✅ Изменения отправлены в `origin/main`
+
+**Ожидание**: Проверка результата в GitHub Actions workflow.
 
 ## Связанные задачи
 
