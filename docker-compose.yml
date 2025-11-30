@@ -4,17 +4,34 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     container_name: cooltodo_app
     restart: unless-stopped
+    user: "${UID:-1000}:${GID:-1000}"
     working_dir: /var/www/html
     volumes:
-      - ./backend:/var/www/html
+      - ./backend:/var/www/html:cached
       - ./backend/vendor:/var/www/html/vendor
+    environment:
+      - COMPOSER_HOME=/var/www/html/.composer
     networks:
       - cooltodo
     depends_on:
       - mysql
+
+  tools:
+    build:
+      context: .
+      dockerfile: Dockerfile.tools
+    container_name: cooltodo_tools
+    restart: unless-stopped
+    user: "${UID:-1000}:${GID:-1000}"
+    working_dir: /var/www/html
+    volumes:
+      - ./backend:/var/www/html:cached
+      - ./backend/vendor:/var/www/html/vendor
+    networks:
+      - cooltodo
 
   nginx:
     image: nginx:alpine
