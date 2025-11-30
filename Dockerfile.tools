@@ -11,22 +11,26 @@ RUN apt-get update && apt-get install -y \
 # Установка Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Глобальная установка PHPStan и PHP-CS-Fixer через Composer
+# Установка PHPStan и PHP-CS-Fixer через Composer (временная установка в /root/.composer)
 RUN composer global require \
     phpstan/phpstan \
     friendsofphp/php-cs-fixer \
     --no-interaction --prefer-dist
 
-# Добавление глобальных bin директорий Composer в PATH
-ENV PATH="/root/.composer/vendor/bin:${PATH}"
+# Копирование vendor директории в /usr/local/lib/composer для глобального доступа
+# Это позволяет избежать конфликта с volume, который монтируется в /var/www/html
+RUN mkdir -p /usr/local/lib/composer && \
+    cp -r /root/.composer/vendor/* /usr/local/lib/composer/ && \
+    chmod -R 755 /usr/local/lib/composer
 
-# Создание символических ссылок для глобального доступа
-RUN ln -s /root/.composer/vendor/bin/phpstan /usr/local/bin/phpstan && \
-    ln -s /root/.composer/vendor/bin/php-cs-fixer /usr/local/bin/php-cs-fixer
+# Создание символических ссылок на bin скрипты из vendor
+# Эти скрипты правильно настроены Composer и используют autoload.php
+RUN ln -sf /usr/local/lib/composer/bin/phpstan /usr/local/bin/phpstan && \
+    ln -sf /usr/local/lib/composer/bin/php-cs-fixer /usr/local/bin/php-cs-fixer
 
 # Настройка рабочей директории
 WORKDIR /var/www/html
 
 # Примечание: Инструменты доступны глобально через /usr/local/bin
-# Это позволяет использовать их напрямую: phpstan, php-cs-fixer
+# Установлены в /usr/local/lib/composer, который не перезаписывается volume
 
