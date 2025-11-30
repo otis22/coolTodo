@@ -18,6 +18,7 @@
 | A12 | Настроить права доступа в Docker контейнерах | High | 0.25 | A10, A11 | Docker | Контейнеры работают от имени пользователя хоста, файлы создаются с правильными правами | Completed ✅ |
 | A13 | Создать helper-скрипты для разработки | Medium | 0.25 | A12 | Bash | Скрипт `dev` создан, все команды работают | Completed ✅ |
 | A14 | Обновить документацию по разработке | Medium | 0.25 | A13 | Markdown | README.md и DOCS/DEVELOPMENT.md обновлены | Completed ✅ |
+| A17 | Исправить пути в CI для PHPUnit | High | 0.25 | A16 | PHPUnit, CI | PHPUnit находит все тесты, coverage генерируется | Completed ✅ |
 
 ## Phase B: Core Features (Основной функционал)
 
