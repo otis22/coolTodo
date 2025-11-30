@@ -50,7 +50,7 @@ docker-compose up -d
 
 4. Установить зависимости backend:
 ```bash
-docker-compose exec app composer install
+./dev composer install
 ```
 
 5. Установить зависимости frontend:
@@ -61,7 +61,7 @@ npm install
 
 6. Запустить миграции:
 ```bash
-docker-compose exec app php artisan migrate
+./dev artisan migrate
 ```
 
 7. Собрать фронтенд:
@@ -70,6 +70,23 @@ cd frontend
 npm run build
 ```
 
+### Helper-скрипт `dev`
+
+Для упрощения работы с Docker контейнерами используется helper-скрипт `./dev`:
+
+```bash
+./dev composer <command>    # Выполнить composer команду
+./dev php <command>         # Выполнить php команду
+./dev artisan <command>    # Выполнить artisan команду
+./dev phpunit [args]       # Запустить PHPUnit тесты
+./dev phpstan              # Запустить PHPStan анализ
+./dev cs-fix [--dry-run]   # Запустить PHP-CS-Fixer
+./dev shell                # Открыть bash shell в контейнере app
+./dev tools-shell          # Открыть bash shell в контейнере tools
+```
+
+**Примечание**: Скрипт использует `docker compose run --rm`, поэтому контейнеры не должны быть постоянно запущены.
+
 ### Running the Project
 
 **Development mode**:
@@ -77,7 +94,7 @@ npm run build
 Backend:
 ```bash
 docker-compose up -d
-docker-compose exec app php artisan serve
+./dev artisan serve
 ```
 
 Frontend:
@@ -97,39 +114,40 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
 **Unit тесты**:
 ```bash
-docker-compose exec app vendor/bin/phpunit --testsuite=Unit
+./dev phpunit --testsuite=Unit
 ```
 
 **Feature тесты**:
 ```bash
-docker-compose exec app vendor/bin/phpunit --testsuite=Feature
+./dev phpunit --testsuite=Feature
 ```
 
 **E2E тесты (Laravel Dusk)**:
 ```bash
-docker-compose exec app php artisan dusk
+./dev artisan dusk
 ```
 
 **Все тесты**:
 ```bash
-docker-compose exec app vendor/bin/phpunit
+./dev phpunit
 ```
 
 **С покрытием кода**:
 ```bash
-docker-compose exec app vendor/bin/phpunit --coverage-text
+./dev phpunit --coverage-text
 ```
 
 ### Code Quality
 
 **PHPStan**:
 ```bash
-docker-compose exec app vendor/bin/phpstan analyse
+./dev phpstan
 ```
 
 **PHP-CS-Fixer**:
 ```bash
-docker-compose exec app vendor/bin/php-cs-fixer fix
+./dev cs-fix              # Исправить код
+./dev cs-fix --dry-run    # Проверить без исправления
 ```
 
 ## Project Structure
@@ -167,6 +185,7 @@ coolTodo/
 
 Подробная документация находится в директории `DOCS/`:
 
+- `DOCS/DEVELOPMENT.md` - Руководство по разработке
 - `DOCS/RULES/` - Правила для ИИ-агентов по разработке
 - `DOCS/AI/Execution_Guide/` - Руководство по выполнению проекта
 - `DOCS/INPROGRESS/` - Текущие задачи в работе

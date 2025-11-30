@@ -16,8 +16,8 @@
 | A10 | Создать Dockerfile.dev для разработки | High | 0.5 | A3 | Docker | Dockerfile.dev создан, содержит PHP 8.3-cli, Composer, Xdebug | Completed ✅ |
 | A11 | Создать Dockerfile.tools для инструментов анализа | High | 0.5 | A3 | Docker | Dockerfile.tools создан, содержит PHPStan и PHP-CS-Fixer | Completed ✅ |
 | A12 | Настроить права доступа в Docker контейнерах | High | 0.25 | A10, A11 | Docker | Контейнеры работают от имени пользователя хоста, файлы создаются с правильными правами | Completed ✅ |
-| A13 | Создать helper-скрипты для разработки | Medium | 0.25 | A12 | Bash | Скрипт `dev` создан, все команды работают | Open |
-| A14 | Обновить документацию по разработке | Medium | 0.25 | A13 | Markdown | README.md и DOCS/DEVELOPMENT.md обновлены | Open |
+| A13 | Создать helper-скрипты для разработки | Medium | 0.25 | A12 | Bash | Скрипт `dev` создан, все команды работают | Completed ✅ |
+| A14 | Обновить документацию по разработке | Medium | 0.25 | A13 | Markdown | README.md и DOCS/DEVELOPMENT.md обновлены | Completed ✅ |
 
 ## Phase B: Core Features (Основной функционал)
 
