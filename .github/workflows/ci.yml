@@ -38,9 +38,29 @@ jobs:
 
       - name: Copy .env
         run: |
-          cp .env.example .env
-          php -r "file_put_contents('.env', str_replace('DB_DATABASE=cooltodo', 'DB_DATABASE=cooltodo_test', file_get_contents('.env')));"
-          php -r "file_put_contents('.env', str_replace('DB_HOST=mysql', 'DB_HOST=127.0.0.1', file_get_contents('.env')));"
+          # Создаем .env в backend/ директории
+          if [ -f backend/.env.example ]; then
+            cp backend/.env.example backend/.env
+          elif [ -f .env.example ]; then
+            cp .env.example backend/.env
+          else
+            # Создаем базовый .env файл если шаблон отсутствует
+            echo "APP_NAME=CoolTodo" > backend/.env
+            echo "APP_ENV=testing" >> backend/.env
+            echo "APP_KEY=" >> backend/.env
+            echo "APP_DEBUG=true" >> backend/.env
+            echo "APP_URL=http://localhost" >> backend/.env
+            echo "" >> backend/.env
+            echo "DB_CONNECTION=mysql" >> backend/.env
+            echo "DB_HOST=127.0.0.1" >> backend/.env
+            echo "DB_PORT=3306" >> backend/.env
+            echo "DB_DATABASE=cooltodo_test" >> backend/.env
+            echo "DB_USERNAME=root" >> backend/.env
+            echo "DB_PASSWORD=root" >> backend/.env
+          fi
+          # Обновляем значения для тестовой БД
+          php -r "file_put_contents('backend/.env', str_replace('DB_DATABASE=cooltodo', 'DB_DATABASE=cooltodo_test', file_get_contents('backend/.env')));"
+          php -r "file_put_contents('backend/.env', str_replace('DB_HOST=mysql', 'DB_HOST=127.0.0.1', file_get_contents('backend/.env')));"
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-interaction --no-progress
@@ -49,18 +69,11 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-      - name: Generate application key
-        working-directory: backend
-        run: php ../vendor/bin/laravel key:generate || php artisan key:generate
-        continue-on-error: true
-
       - name: Setup Laravel environment
         working-directory: backend
         run: |
-          if [ ! -f .env ]; then
-            cp ../.env .env
-          fi
-          php ../vendor/bin/laravel key:generate || php artisan key:generate || echo "Key generation skipped"
+          # .env уже создан на предыдущем шаге, просто генерируем ключ
+          php artisan key:generate --ansi || echo "Key generation skipped"
 
       - name: Run database migrations
         working-directory: backend
