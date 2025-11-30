@@ -1,6 +1,6 @@
 # Task A21: Исправить путь к larastan extension.neon в phpstan.neon
 
-**Статус**: Open  
+**Статус**: In Progress  
 **Приоритет**: High  
 **Оценка**: 0.1 дня
 

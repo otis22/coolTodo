@@ -23,7 +23,7 @@
 | A19 | Исправить путь к coverage.xml в CI | Low | 0.1 | A17 | CI, Codecov | Coverage.xml генерируется в правильном месте, Codecov находит файл | Completed ✅ |
 | A20 | Исправить скрипт post-autoload-dump в composer.json | High | 0.1 | A16 | Composer, Laravel | composer install выполняется успешно, пакеты обнаруживаются | Completed ✅ |
 | A21 | Исправить путь к larastan extension.neon в phpstan.neon | High | 0.1 | A17 | PHPStan, CI | PHPStan находит extension.neon, запускается без ошибок | Open |
-| A22 | Исправить форматирование кода PHP-CS-Fixer | Medium | 0.25 | A11, A13 | PHP-CS-Fixer | PHP-CS-Fixer не находит файлов для исправления | Open |
+| A22 | Исправить форматирование кода PHP-CS-Fixer | Low | 0.25 | A11, A13 | PHP-CS-Fixer | PHP-CS-Fixer не находит файлов для исправления | Open |
 
 ## Phase B: Core Features (Основной функционал)
 
