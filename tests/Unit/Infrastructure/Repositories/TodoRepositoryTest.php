@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Infrastructure\Repositories;
 
-use Tests\TestCase;
 use App\Domain\Models\Task;
 use App\Domain\Models\TaskStatus;
 use App\Infrastructure\Repositories\TodoRepository;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 /**
  * Тесты для TodoRepository.
@@ -39,7 +39,7 @@ class TodoRepositoryTest extends TestCase
         // Создаем задачи
         $task1 = new Task(null, 'Task 1');
         $task2 = new Task(null, 'Task 2', TaskStatus::completed());
-        
+
         $this->repository->save($task1);
         $this->repository->save($task2);
 
@@ -64,7 +64,7 @@ class TodoRepositoryTest extends TestCase
         $id = $saved->getId();
 
         $this->assertNotNull($id);
-        
+
         $found = $this->repository->findById($id);
 
         $this->assertInstanceOf(Task::class, $found);
@@ -138,7 +138,7 @@ class TodoRepositoryTest extends TestCase
 
         $this->assertEquals(2, $deleted);
         $this->assertCount(2, $this->repository->findAll());
-        
+
         $active1Id = $savedActive1->getId();
         $active2Id = $savedActive2->getId();
         $this->assertNotNull($active1Id);
@@ -158,4 +158,3 @@ class TodoRepositoryTest extends TestCase
         $this->assertCount(1, $this->repository->findAll());
     }
 }
-

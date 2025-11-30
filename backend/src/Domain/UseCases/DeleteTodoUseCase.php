@@ -12,8 +12,3 @@ class DeleteTodoUseCase
     // @todo PDD:30min Реализовать DeleteTodoUseCase
     // Details: Создать метод execute(int $id): void, который удаляет задачу по ID
 }
-
-
-
-
-

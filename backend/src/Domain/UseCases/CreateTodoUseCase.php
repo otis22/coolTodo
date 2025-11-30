@@ -14,6 +14,3 @@ class CreateTodoUseCase
     // @todo PDD:30min Реализовать CreateTodoUseCase
     // Details: Создать метод execute(string $title): Task, который создает новую задачу со статусом 'active'
 }
-
-
-

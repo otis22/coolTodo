@@ -49,4 +49,3 @@ interface TodoRepositoryInterface
      */
     public function deleteCompleted(): int;
 }
-

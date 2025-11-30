@@ -20,10 +20,3 @@ class TodoController
     // - destroy(int $id): JsonResponse - DELETE /api/todos/{id}
     // - destroyCompleted(): JsonResponse - DELETE /api/todos/completed
 }
-
-
-
-
-
-
-

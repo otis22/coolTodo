@@ -22,9 +22,9 @@ class TodoRepository implements TodoRepositoryInterface
     public function findAll(): array
     {
         $todos = Todo::all();
-        
+
         return array_map(
-            fn(Todo $todo) => $this->toDomainModel($todo),
+            fn (Todo $todo) => $this->toDomainModel($todo),
             $todos->all()
         );
     }
@@ -38,11 +38,11 @@ class TodoRepository implements TodoRepositoryInterface
     public function findById(int $id): ?Task
     {
         $todo = Todo::find($id);
-        
+
         if ($todo === null) {
             return null;
         }
-        
+
         return $this->toDomainModel($todo);
     }
 
@@ -55,7 +55,7 @@ class TodoRepository implements TodoRepositoryInterface
     public function save(Task $task): Task
     {
         $id = $task->getId();
-        
+
         if ($id === null) {
             // Создание новой задачи
             $todo = new Todo();
@@ -64,10 +64,10 @@ class TodoRepository implements TodoRepositoryInterface
             $statusValue = $task->getStatus()->getValue();
             $todo->status = $statusValue;
             $todo->save();
-            
+
             return new Task($todo->id, $todo->title, TaskStatus::fromString($todo->status));
         }
-        
+
         // Обновление существующей задачи
         $todo = Todo::findOrFail($id);
         $todo->title = $task->getTitle();
@@ -75,7 +75,7 @@ class TodoRepository implements TodoRepositoryInterface
         $statusValue = $task->getStatus()->getValue();
         $todo->status = $statusValue;
         $todo->save();
-        
+
         return new Task($todo->id, $todo->title, TaskStatus::fromString($todo->status));
     }
 
@@ -88,11 +88,11 @@ class TodoRepository implements TodoRepositoryInterface
     public function delete(Task $task): void
     {
         $id = $task->getId();
-        
+
         if ($id === null) {
             return;
         }
-        
+
         Todo::destroy($id);
     }
 
@@ -105,6 +105,7 @@ class TodoRepository implements TodoRepositoryInterface
     {
         /** @var int $deletedCount */
         $deletedCount = Todo::where('status', 'completed')->delete();
+
         return $deletedCount;
     }
 
@@ -123,8 +124,3 @@ class TodoRepository implements TodoRepositoryInterface
         );
     }
 }
-
-
-
-
-

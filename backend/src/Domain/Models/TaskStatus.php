@@ -90,4 +90,3 @@ final class TaskStatus
         return $this->value === $other->value;
     }
 }
-

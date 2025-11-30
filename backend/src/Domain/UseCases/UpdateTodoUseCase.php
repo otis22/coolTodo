@@ -14,8 +14,3 @@ class UpdateTodoUseCase
     // @todo PDD:30min Реализовать UpdateTodoUseCase
     // Details: Создать метод execute(int $id, string $title): Task, который обновляет title задачи
 }
-
-
-
-
-

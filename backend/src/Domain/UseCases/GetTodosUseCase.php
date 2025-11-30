@@ -27,8 +27,3 @@ class GetTodosUseCase
         return $this->repository->findAll();
     }
 }
-
-
-
-
-

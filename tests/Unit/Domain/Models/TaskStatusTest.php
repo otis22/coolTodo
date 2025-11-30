@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Unit\Domain\Models;
 
-use PHPUnit\Framework\TestCase;
 use App\Domain\Models\TaskStatus;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Тесты для Value Object TaskStatus.
@@ -17,7 +17,7 @@ class TaskStatusTest extends TestCase
     public function test_can_create_active_status(): void
     {
         $status = TaskStatus::active();
-        
+
         $this->assertTrue($status->isActive());
         $this->assertFalse($status->isCompleted());
         $this->assertEquals('active', $status->getValue());
@@ -26,7 +26,7 @@ class TaskStatusTest extends TestCase
     public function test_can_create_completed_status(): void
     {
         $status = TaskStatus::completed();
-        
+
         $this->assertTrue($status->isCompleted());
         $this->assertFalse($status->isActive());
         $this->assertEquals('completed', $status->getValue());
@@ -36,7 +36,7 @@ class TaskStatusTest extends TestCase
     {
         $activeStatus = TaskStatus::fromString('active');
         $this->assertTrue($activeStatus->isActive());
-        
+
         $completedStatus = TaskStatus::fromString('completed');
         $this->assertTrue($completedStatus->isCompleted());
     }
@@ -45,7 +45,7 @@ class TaskStatusTest extends TestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Invalid task status: invalid');
-        
+
         TaskStatus::fromString('invalid');
     }
 
@@ -54,7 +54,7 @@ class TaskStatusTest extends TestCase
         $status1 = TaskStatus::active();
         $status2 = TaskStatus::active();
         $status3 = TaskStatus::completed();
-        
+
         $this->assertTrue($status1->equals($status2));
         $this->assertFalse($status1->equals($status3));
     }
@@ -63,12 +63,11 @@ class TaskStatusTest extends TestCase
     {
         $active = TaskStatus::active();
         $toggled = $active->toggle();
-        
+
         $this->assertTrue($toggled->isCompleted());
         $this->assertFalse($toggled->isActive());
-        
+
         $backToActive = $toggled->toggle();
         $this->assertTrue($backToActive->isActive());
     }
 }
-

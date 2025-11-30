@@ -14,8 +14,3 @@ class ToggleTodoStatusUseCase
     // @todo PDD:30min Реализовать ToggleTodoStatusUseCase
     // Details: Создать метод execute(int $id): Task, который переключает статус задачи (active ↔ completed)
 }
-
-
-
-
-

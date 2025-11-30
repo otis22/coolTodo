@@ -24,4 +24,3 @@ class Todo extends Model
         'id' => 'integer',
     ];
 }
-
