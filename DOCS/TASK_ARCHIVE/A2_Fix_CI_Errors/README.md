@@ -71,3 +71,4 @@ but composer.json requires phpstan/phpstan ^2.0
 
 
 
+
