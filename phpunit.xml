@@ -7,15 +7,15 @@
          testdox="true">
     <testsuites>
         <testsuite name="Unit">
-            <directory>tests/Unit</directory>
+            <directory>../tests/Unit</directory>
         </testsuite>
         <testsuite name="Feature">
-            <directory>tests/Feature</directory>
+            <directory>../tests/Feature</directory>
         </testsuite>
     </testsuites>
     <source>
         <include>
-            <directory>backend/src</directory>
+            <directory>src</directory>
         </include>
     </source>
     <php>
@@ -31,6 +31,7 @@
         <env name="TELESCOPE_ENABLED" value="false"/>
     </php>
 </phpunit>
+
 
 
 
