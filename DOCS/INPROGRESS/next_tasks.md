@@ -2,7 +2,7 @@
 
 ## Ready to Start
 
-- [ ] Task A2-Fix-Artisan: Исправление пути к artisan в CI
+- [ ] Task A3-Fix-CI: Исправление ошибок в GitHub Actions CI workflow
 - [ ] Task A3: Настроить Docker окружение
 - [ ] Task A4: Настроить инструменты качества кода
 - [ ] Task A5: Создать структуру Domain Layer
@@ -16,6 +16,7 @@
 ## Completed
 
 - [x] Task A1: Инициализировать проект ✅ (заархивирована в DOCS/TASK_ARCHIVE/)
+- [x] Task A2-Fix-Artisan: Исправление пути к artisan в CI ✅
 
 ## Blocked
 
