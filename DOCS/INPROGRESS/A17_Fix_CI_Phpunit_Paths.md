@@ -112,6 +112,29 @@
 - `<directory>backend/src</directory>` (относительно корня)
 - `<directory>../tests/Unit</directory>` → `<directory>tests/Unit</directory>` (относительно корня)
 
+✅ **Исправлено**:
+- Обновлен `phpunit.xml` с правильными путями относительно корня проекта
+- Bootstrap: `backend/vendor/autoload.php`
+- Исходный код: `backend/src`
+- Тесты: `tests/Unit` и `tests/Feature`
+- Изменения отправлены в `origin/main` (коммит: `79fbe89`)
+
+**Провлема блокирующая проверку A17**:
+
+Workflow не доходит до шага "Run PHPUnit tests" из-за ошибки на этапе "Install Composer dependencies":
+
+```
+PHP Warning: require(/home/runner/work/coolTodo/coolTodo/backend/../vendor/autoload.php): 
+Failed to open stream: No such file or directory in 
+/home/runner/work/coolTodo/coolTodo/backend/artisan on line 7
+```
+
+**Причина**: В `backend/composer.json` скрипт `post-autoload-dump` пытается запустить `@php artisan package:discover`, но `artisan` пытается загрузить `../vendor/autoload.php` (из корня), а vendor находится в `backend/vendor/`.
+
+**Решение**: Исправить путь к vendor в `backend/artisan` или изменить скрипт composer.json. Это блокирует проверку задачи A17.
+
+**Статус проверки**: Workflow run `19801684501` - шаг "Run PHPUnit tests" был пропущен (skipped) из-за ошибки на предыдущем шаге.
+
 ## Связанные задачи
 
 - A16: Исправить расположение composer.json (привело к несоответствию путей)
