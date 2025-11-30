@@ -44,7 +44,7 @@ npm error npm-shrinkwrap.json with lockfileVersion >= 1.
 |--------------|----------|-----------|--------|-------------|-------------|------------------|
 | A3.1 | Проверить package-lock.json и его совместимость | High | 30 мин | None | npm, git | package-lock.json существует, lockfileVersion >= 1, файл закоммичен | ✅ Completed |
 | A3.2 | Протестировать npm ci локально | High | 30 мин | A3.1 | npm, frontend/ | npm ci выполняется без ошибок локально | ✅ Completed |
-| A3.3 | Проверить npm ci в CI workflow | High | 30 мин | A3.2 | GitHub Actions | npm ci успешно выполняется в CI |
+| A3.3 | Проверить npm ci в CI workflow | High | 30 мин | A3.2 | GitHub Actions | npm ci успешно выполняется в CI | ✅ Completed |
 | A3.4 | Проверить все шаги CI workflow | High | 30 мин | A3.3 | GitHub Actions | Все шаги workflow выполняются успешно |
 
 ## План выполнения
@@ -107,15 +107,31 @@ npm error npm-shrinkwrap.json with lockfileVersion >= 1.
 - ✅ Все зависимости установлены (35 пакетов)
 - ✅ `node_modules` создан корректно
 
-### Подзадача A3.3: Проверить npm ci в CI workflow (30 мин)
+### Подзадача A3.3: Проверить npm ci в CI workflow (30 мин) ✅
+
+**Статус**: Completed ✅  
+**Завершено**: 2025-01-27
 
 **Цель**: Убедиться, что `npm ci` работает в GitHub Actions CI.
 
 **Шаги**:
-- [ ] Запустить CI пайплайн через push или PR
-- [ ] Проверить логи шага "Install Node dependencies"
-- [ ] Убедиться, что `npm ci` выполняется успешно
-- [ ] Проверить, что нет ошибок связанных с `package-lock.json`
+- [x] Запустить CI пайплайн через push или PR (push выполнен: commits 2498a06, 89f71fe)
+- [x] Проверить логи шага "Install Node dependencies" (проверено через gh CLI)
+- [x] Убедиться, что `npm ci` выполняется успешно
+- [x] Проверить, что нет ошибок связанных с `package-lock.json`
+
+**Результаты проверки CI**:
+- ✅ Push в репозиторий выполнен (commits отправлены в main)
+- ✅ CI пайплайн запустился автоматически на GitHub Actions
+- ✅ Шаг "Install Node dependencies" выполнен успешно:
+  - `npm ci` выполнен без ошибок
+  - Установлено 35 пакетов, проверено 36 пакетов
+  - Найдено 0 уязвимостей (vulnerabilities)
+  - Время выполнения: ~2 секунды
+- ✅ Нет ошибок связанных с `package-lock.json`
+- ✅ `package-lock.json` корректно используется в CI
+
+**Примечание**: Общая ошибка CI workflow связана с PHP-CS-Fixer (найдены файлы для исправления), а не с npm ci. Проблема с `npm ci` полностью решена.
 
 **Критерии приемки**:
 - ✅ CI пайплайн проходит шаг "Install Node dependencies"
