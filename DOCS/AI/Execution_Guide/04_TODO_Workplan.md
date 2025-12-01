@@ -60,7 +60,7 @@
 | C1 | Создать API сервис (TodoApiService) | High | 1 | B7 | Vue, Axios/Fetch | Сервис работает, тесты проходят (TDD: Red-Green-Refactor) | Completed ✅ |
 | C2 | Реализовать компонент TodoItem | High | 2 | C1 | Vue 3, Vite | Компонент отображает задачу, обрабатывает события | Completed ✅ |
 | C3 | Реализовать компонент TodoList | High | 2 | C2 | Vue 3, Vite | Компонент отображает список, фильтрация работает | Completed ✅ |
-| C4 | Реализовать фильтрацию (All/Active/Completed) | High | 1 | C3 | Vue 3 | Фильтрация работает на клиенте | Open |
+| C4 | Реализовать фильтрацию (All/Active/Completed) | High | 1 | C3 | Vue 3 | Фильтрация работает на клиенте | Completed ✅ |
 | C5 | Реализовать счетчик активных задач | High | 0.5 | C3 | Vue 3 | Счетчик отображается и обновляется | Open |
 | C6 | Реализовать редактирование задачи (double-click) | High | 1.5 | C2 | Vue 3 | Редактирование работает (Enter/Escape) | Open |
 | C7 | Реализовать кнопку "Clear completed" | High | 0.5 | C3 | Vue 3 | Кнопка удаляет все completed задачи | Open |
