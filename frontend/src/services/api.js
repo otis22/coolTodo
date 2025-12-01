@@ -9,9 +9,18 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api'
  * @returns {Promise<Array>} Список задач
  */
 export async function getTodos() {
-  // @todo PDD:30min Реализовать getTodos
-  // Details: GET запрос к /api/todos, возвращает массив задач
-  throw new Error('Not implemented');
+  const response = await fetch(`${API_BASE_URL}/todos`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch todos: ${response.statusText}`);
+  }
+
+  return await response.json();
 }
 
 /**
@@ -20,9 +29,23 @@ export async function getTodos() {
  * @returns {Promise<Object>} Созданная задача
  */
 export async function createTodo(title) {
-  // @todo PDD:30min Реализовать createTodo
-  // Details: POST запрос к /api/todos с { title }, возвращает созданную задачу
-  throw new Error('Not implemented');
+  const response = await fetch(`${API_BASE_URL}/todos`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ title }),
+  });
+
+  if (!response.ok) {
+    if (response.status === 422) {
+      const errors = await response.json();
+      throw new Error(`Validation failed: ${JSON.stringify(errors)}`);
+    }
+    throw new Error(`Failed to create todo: ${response.statusText}`);
+  }
+
+  return await response.json();
 }
 
 /**
@@ -32,21 +55,51 @@ export async function createTodo(title) {
  * @returns {Promise<Object>} Обновленная задача
  */
 export async function updateTodo(id, title) {
-  // @todo PDD:30min Реализовать updateTodo
-  // Details: PUT запрос к /api/todos/{id} с { title }, возвращает обновленную задачу
-  throw new Error('Not implemented');
+  const response = await fetch(`${API_BASE_URL}/todos/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ title }),
+  });
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      const error = await response.json();
+      throw new Error(error.error || 'Todo not found');
+    }
+    if (response.status === 422) {
+      const errors = await response.json();
+      throw new Error(`Validation failed: ${JSON.stringify(errors)}`);
+    }
+    throw new Error(`Failed to update todo: ${response.statusText}`);
+  }
+
+  return await response.json();
 }
 
 /**
- * Изменить статус задачи.
+ * Переключить статус задачи.
  * @param {number} id - ID задачи
- * @param {string} status - Новый статус ('active' | 'completed')
  * @returns {Promise<Object>} Обновленная задача
  */
-export async function toggleStatus(id, status) {
-  // @todo PDD:30min Реализовать toggleStatus
-  // Details: PATCH запрос к /api/todos/{id}/status с { status }, возвращает обновленную задачу
-  throw new Error('Not implemented');
+export async function toggleStatus(id) {
+  const response = await fetch(`${API_BASE_URL}/todos/${id}/status`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      const error = await response.json();
+      throw new Error(error.error || 'Todo not found');
+    }
+    throw new Error(`Failed to toggle todo status: ${response.statusText}`);
+  }
+
+  return await response.json();
 }
 
 /**
@@ -55,9 +108,20 @@ export async function toggleStatus(id, status) {
  * @returns {Promise<void>}
  */
 export async function deleteTodo(id) {
-  // @todo PDD:30min Реализовать deleteTodo
-  // Details: DELETE запрос к /api/todos/{id}
-  throw new Error('Not implemented');
+  const response = await fetch(`${API_BASE_URL}/todos/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      const error = await response.json();
+      throw new Error(error.error || 'Todo not found');
+    }
+    throw new Error(`Failed to delete todo: ${response.statusText}`);
+  }
 }
 
 /**
@@ -65,9 +129,19 @@ export async function deleteTodo(id) {
  * @returns {Promise<number>} Количество удаленных задач
  */
 export async function deleteCompleted() {
-  // @todo PDD:30min Реализовать deleteCompleted
-  // Details: DELETE запрос к /api/todos/completed, возвращает { deleted: number }
-  throw new Error('Not implemented');
+  const response = await fetch(`${API_BASE_URL}/todos/completed`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to delete completed todos: ${response.statusText}`);
+  }
+
+  const result = await response.json();
+  return result.deleted || 0;
 }
 
 

@@ -45,8 +45,8 @@
 | B5.3 | Проверить и исправить CI workflow для тестов с БД | High | 0.25 | B5.2 | CI, GitHub Actions | Тесты с БД проходят в CI, все переменные окружения настроены | In Progress |
 | B5.4 | Системное решение для coverage.xml в локальном и CI окружении | High | 0.5 | B5.3 | Docker, Xdebug, CI | Coverage.xml генерируется локально и в CI, Xdebug настроен | Completed ✅ |
 | B5.5 | Исправить форматирование кода PHP-CS-Fixer | Medium | 0.25 | B5 | PHP-CS-Fixer | Все файлы отформатированы согласно PSR-12 | Completed ✅ |
-| B5.6 | Улучшить обработку ошибок в CI workflow | Medium | 0.5 | B5.3 | CI, GitHub Actions | Критические шаги останавливают workflow, некритические продолжаются | Open |
-| B5.7 | Добавить проверку готовности MySQL перед миграциями | Medium | 0.25 | B5.3 | CI, MySQL | MySQL проверяется на готовность, нет race conditions | Open |
+| B5.6 | Улучшить обработку ошибок в CI workflow | Medium | 0.5 | B5.3 | CI, GitHub Actions | Критические шаги останавливают workflow, некритические продолжаются | Completed ✅ |
+| B5.7 | Добавить проверку готовности MySQL перед миграциями | Medium | 0.25 | B5.3 | CI, MySQL | MySQL проверяется на готовность, нет race conditions | Completed ✅ |
 | B5.8 | Исправить генерацию coverage при падении тестов | Low | 0.25 | B5.4, B5.6 | CI, Coverage | Coverage генерируется даже при ошибках тестов | Completed ✅ |
 | B5.9 | Исправить доступность MySQL client в CI | Medium | 0.25 | B5.7 | CI, MySQL | MySQL client доступен, проверка готовности работает | Completed ✅ |
 | B5.10 | Исправить оставшиеся проблемы форматирования PHP-CS-Fixer | Low | 0.25 | B5.5 | PHP-CS-Fixer | Все файлы отформатированы, CI не показывает ошибки | Completed ✅ |
@@ -57,7 +57,7 @@
 
 | Task ID | Description | Priority | Effort (days) | Dependencies | Tools | Acceptance Criteria | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| C1 | Создать API сервис (TodoApiService) | High | 1 | B7 | Vue, Axios/Fetch | Сервис работает, тесты проходят (TDD: Red-Green-Refactor) | Open |
+| C1 | Создать API сервис (TodoApiService) | High | 1 | B7 | Vue, Axios/Fetch | Сервис работает, тесты проходят (TDD: Red-Green-Refactor) | Completed ✅ |
 | C2 | Реализовать компонент TodoItem | High | 2 | C1 | Vue 3, Vite | Компонент отображает задачу, обрабатывает события | Open |
 | C3 | Реализовать компонент TodoList | High | 2 | C2 | Vue 3, Vite | Компонент отображает список, фильтрация работает | Open |
 | C4 | Реализовать фильтрацию (All/Active/Completed) | High | 1 | C3 | Vue 3 | Фильтрация работает на клиенте | Open |
