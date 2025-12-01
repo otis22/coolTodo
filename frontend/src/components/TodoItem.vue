@@ -1,5 +1,5 @@
 <template>
-  <div class="todo-item" :class="{ completed: isCompleted }">
+  <div class="todo-item" :class="{ completed: isCompleted, editing: isEditing }">
     <input
       type="checkbox"
       :checked="isCompleted"
@@ -7,7 +7,20 @@
       class="todo-checkbox"
       :disabled="isLoading"
     />
-    <span class="todo-title">{{ todo.title }}</span>
+    <span
+      v-if="!isEditing"
+      class="todo-title"
+      @dblclick="startEditing"
+    >{{ todo.title }}</span>
+    <input
+      v-else
+      ref="editInput"
+      v-model="editTitle"
+      class="todo-edit"
+      @keydown.enter="saveEdit"
+      @keydown.escape="cancelEdit"
+      @blur="saveEdit"
+    />
     <button
       class="todo-delete"
       @click="handleDelete"
@@ -20,8 +33,8 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
-import { toggleStatus, deleteTodo } from '../services/api.js';
+import { ref, computed, nextTick } from 'vue';
+import { toggleStatus, deleteTodo, updateTodo } from '../services/api.js';
 
 const props = defineProps({
   todo: {
@@ -36,8 +49,58 @@ const props = defineProps({
 const emit = defineEmits(['updated', 'deleted']);
 
 const isLoading = ref(false);
+const isEditing = ref(false);
+const editTitle = ref('');
+const editInput = ref(null);
 
 const isCompleted = computed(() => props.todo.status === 'completed');
+
+function startEditing() {
+  if (isLoading.value || isCompleted.value) return;
+  isEditing.value = true;
+  editTitle.value = props.todo.title;
+  nextTick(() => {
+    if (editInput.value) {
+      editInput.value.focus();
+      editInput.value.select();
+    }
+  });
+}
+
+async function saveEdit() {
+  if (!isEditing.value) return;
+  
+  const trimmedTitle = editTitle.value.trim();
+  if (trimmedTitle === '') {
+    cancelEdit();
+    return;
+  }
+  
+  if (trimmedTitle === props.todo.title) {
+    cancelEdit();
+    return;
+  }
+  
+  if (isLoading.value) return;
+  
+  try {
+    isLoading.value = true;
+    const updatedTodo = await updateTodo(props.todo.id, trimmedTitle);
+    emit('updated', updatedTodo);
+    isEditing.value = false;
+  } catch (error) {
+    console.error('Failed to update todo:', error);
+    alert(`Ошибка при сохранении: ${error.message}`);
+    // Оставляем режим редактирования активным при ошибке
+  } finally {
+    isLoading.value = false;
+  }
+}
+
+function cancelEdit() {
+  isEditing.value = false;
+  editTitle.value = '';
+}
 
 async function handleToggleStatus() {
   if (isLoading.value) return;
@@ -114,6 +177,31 @@ async function handleDelete() {
 .todo-item.completed .todo-title {
   text-decoration: line-through;
   color: #d9d9d9;
+}
+
+.todo-item.editing .todo-title {
+  display: none;
+}
+
+.todo-edit {
+  flex: 1;
+  font-size: 24px;
+  line-height: 1.4;
+  color: #4d4d4d;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #999;
+  border-radius: 2px;
+  outline: none;
+  box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  margin: -12px -16px;
+  width: calc(100% + 32px);
+  box-sizing: border-box;
+}
+
+.todo-item.editing .todo-delete {
+  display: none;
 }
 
 .todo-delete {
