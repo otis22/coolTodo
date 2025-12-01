@@ -72,9 +72,16 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | D1 | Написать Unit тесты для Domain Layer | High | 3 | B4 | PHPUnit | Покрытие >90%, все тесты проходят (TDD: Red-Green-Refactor) | Completed ✅ |
 | D2 | Написать Integration тесты для API | High | 2 | B7 | PHPUnit, Laravel | Все endpoints покрыты тестами (TDD: Red-Green-Refactor) | Completed ✅ |
-| D3 | Написать E2E тесты (Laravel Dusk) | High | 2 | C8 | Laravel Dusk | Все ключевые сценарии покрыты (TDD: Red-Green-Refactor) | Open |
+| D3.1 | Настроить Laravel Dusk для E2E тестов | High | 0.5 | C8 | Laravel Dusk | Dusk установлен и настроен, базовый тест работает | Open |
+| D3.2 | Написать E2E тест для создания задачи | High | 0.5 | D3.1 | Laravel Dusk | Тест создает задачу через UI и проверяет результат | Open |
+| D3.3 | Написать E2E тест для редактирования задачи | High | 0.5 | D3.1 | Laravel Dusk | Тест редактирует задачу через UI (double-click) | Open |
+| D3.4 | Написать E2E тест для переключения статуса и фильтрации | High | 0.5 | D3.1 | Laravel Dusk | Тест переключает статус, фильтрует задачи | Open |
+| D3.5 | Написать E2E тест для удаления задач | High | 0.5 | D3.1 | Laravel Dusk | Тест удаляет одну задачу и все completed задачи | Open |
 | D4 | Настроить покрытие кода | High | 0.5 | D1-D3 | PHPUnit, Xdebug | Coverage reports генерируются | Open |
-| D5 | Исправить все предупреждения PHPStan | High | 2 | B4, C8 | PHPStan | PHPStan level 9 без ошибок | Open |
+| D5.1 | Исправить предупреждения PHPStan в Domain Layer | High | 0.5 | B4 | PHPStan | Domain Layer без предупреждений PHPStan level 9 | Open |
+| D5.2 | Исправить предупреждения PHPStan в Infrastructure Layer | High | 0.5 | B4 | PHPStan | Infrastructure Layer без предупреждений PHPStan level 9 | Open |
+| D5.3 | Исправить предупреждения PHPStan в Controllers | High | 0.5 | B5 | PHPStan | Controllers без предупреждений PHPStan level 9 | Open |
+| D5.4 | Проверить и исправить оставшиеся предупреждения PHPStan | High | 0.5 | D5.1-D5.3 | PHPStan | PHPStan level 9 без ошибок во всем проекте | Open |
 
 ## Phase E: DevOps & Deployment (Развертывание)
 
