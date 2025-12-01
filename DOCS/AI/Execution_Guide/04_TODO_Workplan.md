@@ -42,6 +42,7 @@
 | B5 | Реализовать API контроллеры | High | 2 | B4 | Laravel, PHPUnit | Все endpoints работают, покрыты feature тестами (TDD: Red-Green-Refactor) | Completed ✅ |
 | B5.1 | Исправить окружение БД для feature тестов | High | 0.5 | B5 | Laravel, PHPUnit, MySQL | Feature тесты могут выполнять миграции, RefreshDatabase работает корректно | Completed ✅ |
 | B5.2 | Универсальная конфигурация БД для тестов | High | 0.25 | B5.1 | Laravel, PHPUnit, CI | Единая конфигурация работает локально и в CI без дублирования | Completed ✅ |
+| B5.3 | Проверить и исправить CI workflow для тестов с БД | High | 0.25 | B5.2 | CI, GitHub Actions | Тесты с БД проходят в CI, все переменные окружения настроены | Open |
 | B6 | Реализовать валидацию запросов | High | 1 | B5 | Laravel Requests | Валидация работает, тесты проходят (TDD: Red-Green-Refactor) | Open |
 | B7 | Настроить API routes | High | 0.5 | B5 | Laravel Routes | Все routes зарегистрированы, работают | Open |
 
