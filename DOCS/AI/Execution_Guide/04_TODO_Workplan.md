@@ -85,9 +85,9 @@
 | E3 | Настроить логирование | Medium | 1 | B5 | Laravel Logging | Логи пишутся, структурированы | Open |
 | E4 | Настроить обработку ошибок | Medium | 1 | B5 | Laravel Exception Handler | Ошибки обрабатываются, логируются | Open |
 | E5 | Создать документацию API | Medium | 1 | B7 | Markdown/Swagger | API задокументировано | Open |
-| E6 | Исправить перезапуск app контейнера | High | 0.5 | A3 | Docker, PHP-FPM | App контейнер работает стабильно, PHP-FPM доступен | Open |
-| E7 | Исправить 404 ошибки в nginx для API | High | 0.25 | A3, E6 | Nginx, Laravel | API endpoints доступны через nginx | Open |
-| E8 | Настроить CORS для API | Medium | 0.25 | E6, E7 | Laravel CORS | CORS заголовки отправляются, запросы с фронтенда разрешены | Open |
+| E6 | Исправить перезапуск app контейнера | High | 0.5 | A3 | Docker, PHP-FPM | App контейнер работает стабильно, PHP-FPM доступен | Completed ✅ |
+| E7 | Исправить 404 ошибки в nginx для API | High | 0.25 | A3, E6 | Nginx, Laravel | API endpoints доступны через nginx | Completed ✅ |
+| E8 | Настроить CORS для API | Medium | 0.25 | E6, E7 | Laravel CORS | CORS заголовки отправляются, запросы с фронтенда разрешены | Completed ✅ |
 
 ## Индикаторы статуса
 
