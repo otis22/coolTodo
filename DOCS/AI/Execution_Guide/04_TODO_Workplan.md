@@ -70,7 +70,7 @@
 
 | Task ID | Description | Priority | Effort (days) | Dependencies | Tools | Acceptance Criteria | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| D1 | Написать Unit тесты для Domain Layer | High | 3 | B4 | PHPUnit | Покрытие >90%, все тесты проходят (TDD: Red-Green-Refactor) | Open |
+| D1 | Написать Unit тесты для Domain Layer | High | 3 | B4 | PHPUnit | Покрытие >90%, все тесты проходят (TDD: Red-Green-Refactor) | Completed ✅ |
 | D2 | Написать Integration тесты для API | High | 2 | B7 | PHPUnit, Laravel | Все endpoints покрыты тестами (TDD: Red-Green-Refactor) | Open |
 | D3 | Написать E2E тесты (Laravel Dusk) | High | 2 | C8 | Laravel Dusk | Все ключевые сценарии покрыты (TDD: Red-Green-Refactor) | Open |
 | D4 | Настроить покрытие кода | High | 0.5 | D1-D3 | PHPUnit, Xdebug | Coverage reports генерируются | Open |
