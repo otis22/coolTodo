@@ -112,4 +112,3 @@ class DeleteTodoTest extends DuskTestCase
         });
     }
 }
-

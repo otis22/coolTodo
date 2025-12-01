@@ -21,4 +21,3 @@ class ExampleTest extends DuskTestCase
         });
     }
 }
-

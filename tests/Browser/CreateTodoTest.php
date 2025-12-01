@@ -46,4 +46,3 @@ class CreateTodoTest extends DuskTestCase
         });
     }
 }
-

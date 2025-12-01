@@ -114,4 +114,3 @@ class ToggleStatusAndFilteringTest extends DuskTestCase
         });
     }
 }
-
