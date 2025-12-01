@@ -49,6 +49,7 @@
 | B5.7 | Добавить проверку готовности MySQL перед миграциями | Medium | 0.25 | B5.3 | CI, MySQL | MySQL проверяется на готовность, нет race conditions | Open |
 | B5.8 | Исправить генерацию coverage при падении тестов | Low | 0.25 | B5.4, B5.6 | CI, Coverage | Coverage генерируется даже при ошибках тестов | Completed ✅ |
 | B5.9 | Исправить доступность MySQL client в CI | Medium | 0.25 | B5.7 | CI, MySQL | MySQL client доступен, проверка готовности работает | Completed ✅ |
+| B5.10 | Исправить оставшиеся проблемы форматирования PHP-CS-Fixer | Low | 0.25 | B5.5 | PHP-CS-Fixer | Все файлы отформатированы, CI не показывает ошибки | Completed ✅ |
 | B6 | Реализовать валидацию запросов | High | 1 | B5 | Laravel Requests | Валидация работает, тесты проходят (TDD: Red-Green-Refactor) | Completed ✅ |
 | B7 | Настроить API routes | High | 0.5 | B5 | Laravel Routes | Все routes зарегистрированы, работают | Open |
 

@@ -31,4 +31,3 @@ class CreateTodoRequest extends FormRequest
         ];
     }
 }
-
