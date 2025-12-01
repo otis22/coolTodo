@@ -51,7 +51,7 @@
 | B5.9 | Исправить доступность MySQL client в CI | Medium | 0.25 | B5.7 | CI, MySQL | MySQL client доступен, проверка готовности работает | Completed ✅ |
 | B5.10 | Исправить оставшиеся проблемы форматирования PHP-CS-Fixer | Low | 0.25 | B5.5 | PHP-CS-Fixer | Все файлы отформатированы, CI не показывает ошибки | Completed ✅ |
 | B6 | Реализовать валидацию запросов | High | 1 | B5 | Laravel Requests | Валидация работает, тесты проходят (TDD: Red-Green-Refactor) | Completed ✅ |
-| B7 | Настроить API routes | High | 0.5 | B5 | Laravel Routes | Все routes зарегистрированы, работают | Open |
+| B7 | Настроить API routes | High | 0.5 | B5 | Laravel Routes | Все routes зарегистрированы, работают | Completed ✅ |
 
 ## Phase C: Frontend (Интерфейс)
 
