@@ -1,6 +1,8 @@
 # Task E15: Исправить проблему с tinker (psysh config path)
 
-**Статус**: Open  
+**Статус**: Completed ✅  
+**Начало**: 2025-12-01  
+**Завершение**: 2025-12-01  
 **Приоритет**: Medium  
 **Оценка**: 0.25 дня
 
@@ -62,16 +64,52 @@ HOME=/
 - [x] Определить правильное значение `HOME` для контейнеров ✅
 
 ### Шаг 2: Исправление
-- [ ] Добавить переменную окружения `HOME` в `docker-compose.yml` для сервисов `app` и `tools`
-- [ ] Установить `HOME=/var/www/project/backend` или `HOME=/home/app` (создать пользователя)
-- [ ] Проверить, что директория существует и доступна для записи
+- [x] Добавить переменную окружения `HOME` в `docker-compose.yml` для сервисов `app` и `tools` ✅
+- [x] Установить `HOME=/var/www/project/backend` ✅
+- [x] Проверить, что директория существует и доступна для записи ✅
 - [ ] Обновить документацию, если необходимо
 
 ### Шаг 3: Проверка
-- [ ] Запустить `./dev artisan tinker --execute="echo 'test';"`
-- [ ] Убедиться, что нет ошибок
-- [ ] Проверить, что конфигурация создается в правильном месте
-- [ ] Проверить, что PHP-FPM все еще работает
+- [x] Запустить `./dev artisan tinker --execute="echo 'test';"` ✅
+- [x] Убедиться, что нет ошибок ✅
+- [x] Проверить, что конфигурация создается в правильном месте ✅
+- [x] Проверить, что PHP-FPM все еще работает ✅
+
+## Результаты проверки
+
+✅ **HOME установлен правильно**: `/var/www/project/backend`  
+✅ **Tinker работает**: `php artisan tinker --execute="..."` выполняется без ошибок  
+✅ **Конфигурация psysh создана**: `/var/www/project/backend/.config/psysh`  
+✅ **PHP-FPM работает**: контейнер запущен и доступен  
+✅ **API доступен**: `http://localhost:8080/api/todos` возвращает данные  
+✅ **Через ./dev скрипт**: `./dev artisan tinker` работает корректно
+
+**Задача выполнена успешно!** ✅
+
+## Выполненные изменения
+
+### Обновлен docker-compose.yml
+
+**Добавлено для сервиса `app`**:
+```yaml
+environment:
+  - COMPOSER_HOME=/var/www/project/backend/.composer
+  - HOME=/var/www/project/backend  # Добавлено
+  - XDEBUG_MODE=develop,coverage
+```
+
+**Добавлено для сервиса `tools`**:
+```yaml
+environment:
+  - HOME=/var/www/project/backend  # Добавлено
+```
+
+### Проверка совместимости с CI
+
+✅ **CI workflow не использует docker-compose** - изменения безопасны:
+- CI использует нативный PHP через `shivammathur/setup-php@v2`
+- CI использует GitHub Actions services для MySQL
+- Изменения в docker-compose.yml не влияют на CI workflow
 
 ## Технические детали
 
