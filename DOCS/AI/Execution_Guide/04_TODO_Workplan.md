@@ -39,7 +39,9 @@
 | B2 | Создать миграции БД | High | 1 | B1 | Laravel Migrations | Таблица todos создана, миграция обратима | Completed ✅ |
 | B3 | Реализовать TodoRepository | High | 2 | B1, B2 | PHP, Eloquent, PHPUnit | Repository реализован, покрыт тестами (TDD: Red-Green-Refactor) | Completed ✅ |
 | B4 | Реализовать Use Cases (Create, Update, Delete, Toggle) | High | 3 | B1, B3 | PHP, PHPUnit | Все Use Cases реализованы, покрыты тестами >90% (TDD: Red-Green-Refactor) | Completed ✅ |
-| B5 | Реализовать API контроллеры | High | 2 | B4 | Laravel, PHPUnit | Все endpoints работают, покрыты feature тестами (TDD: Red-Green-Refactor) | Open |
+| B5 | Реализовать API контроллеры | High | 2 | B4 | Laravel, PHPUnit | Все endpoints работают, покрыты feature тестами (TDD: Red-Green-Refactor) | Completed ✅ |
+| B5.1 | Исправить окружение БД для feature тестов | High | 0.5 | B5 | Laravel, PHPUnit, MySQL | Feature тесты могут выполнять миграции, RefreshDatabase работает корректно | Completed ✅ |
+| B5.2 | Универсальная конфигурация БД для тестов | High | 0.25 | B5.1 | Laravel, PHPUnit, CI | Единая конфигурация работает локально и в CI без дублирования | Completed ✅ |
 | B6 | Реализовать валидацию запросов | High | 1 | B5 | Laravel Requests | Валидация работает, тесты проходят (TDD: Red-Green-Refactor) | Open |
 | B7 | Настроить API routes | High | 0.5 | B5 | Laravel Routes | Все routes зарегистрированы, работают | Open |
 

@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// @todo PDD:30min Настроить API routes для TodoController
-// Details: Зарегистрировать все endpoints для управления задачами
-// - GET /api/todos
-// - POST /api/todos
-// - PUT /api/todos/{id}
-// - PATCH /api/todos/{id}/status
-// - DELETE /api/todos/{id}
-// - DELETE /api/todos/completed
+use App\Infrastructure\Http\Controllers\TodoController;
+
+Route::get('/todos', [TodoController::class, 'index']);
+Route::post('/todos', [TodoController::class, 'store']);
+Route::put('/todos/{id}', [TodoController::class, 'update'])->where('id', '[0-9]+');
+Route::patch('/todos/{id}/status', [TodoController::class, 'updateStatus'])->where('id', '[0-9]+');
+Route::delete('/todos/{id}', [TodoController::class, 'destroy'])->where('id', '[0-9]+');
+Route::delete('/todos/completed', [TodoController::class, 'destroyCompleted']);
 
 
 
