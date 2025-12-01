@@ -43,7 +43,16 @@ case "$1" in
         ;;
     phpunit)
         shift
-        exec_app vendor/bin/phpunit --configuration=../phpunit.xml "$@"
+        if [[ "$1" == "--coverage" ]]; then
+            shift
+            exec_app vendor/bin/phpunit --configuration=../phpunit.xml --coverage-text --coverage-clover=../coverage.xml "$@"
+        else
+            exec_app vendor/bin/phpunit --configuration=../phpunit.xml "$@"
+        fi
+        ;;
+    coverage)
+        shift
+        exec_app vendor/bin/phpunit --configuration=../phpunit.xml --coverage-text --coverage-clover=../coverage.xml "$@"
         ;;
         phpstan)
             shift
@@ -67,6 +76,8 @@ case "$1" in
         echo "  php <command>        - Выполнить php команду в контейнере app"
         echo "  artisan <command>    - Выполнить artisan команду в контейнере app"
         echo "  phpunit [args]       - Запустить PHPUnit тесты"
+        echo "  phpunit --coverage   - Запустить PHPUnit тесты с coverage"
+        echo "  coverage [args]      - Запустить PHPUnit тесты с coverage (алиас)"
         echo "  phpstan              - Запустить PHPStan анализ"
         echo "  cs-fix [--dry-run]   - Запустить PHP-CS-Fixer"
         echo "  shell                - Открыть bash shell в контейнере app"
