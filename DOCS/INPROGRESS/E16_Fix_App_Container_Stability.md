@@ -1,6 +1,8 @@
 # Task E16: Исправить стабильность app контейнера (PHP-FPM)
 
-**Статус**: Open  
+**Статус**: Completed ✅  
+**Начало**: 2025-12-01  
+**Завершение**: 2025-12-01  
 **Приоритет**: High  
 **Оценка**: 0.5 дня
 
@@ -52,22 +54,70 @@ cooltodo_app  | /usr/local/bin/docker-php-entrypoint: 9: exec: php-fpm: not foun
 - [x] Проверить Dockerfile.dev.fpm ✅
 - [x] Проверить docker-compose.yml конфигурацию ✅
 - [x] Проверить логи контейнера ✅
-- [ ] Определить причину проблемы с `php-fpm: not found`
+- [x] Определить причину проблемы с `php-fpm: not found` ✅
+
+**Причина**: `php-fpm` находится в `/usr/local/sbin/php-fpm`, но при запуске с пользователем 1000:1000 PATH может не включать `/usr/local/sbin`.
 
 ### Шаг 2: Исправление
-- [ ] Проверить, что `php-fpm` установлен в Dockerfile.dev.fpm
-- [ ] Убедиться, что команда `php-fpm` доступна в PATH
-- [ ] Проверить конфигурацию PHP-FPM
-- [ ] Добавить healthcheck для контейнера
-- [ ] Обновить docker-compose.yml при необходимости
+- [x] Проверить, что `php-fpm` установлен в Dockerfile.dev.fpm ✅
+- [x] Убедиться, что команда `php-fpm` доступна в PATH ✅ (находится в `/usr/local/sbin/php-fpm`)
+- [x] Проверить конфигурацию PHP-FPM ✅
+- [x] Добавить healthcheck для контейнера ✅
+- [x] Обновить docker-compose.yml при необходимости ✅
+
+**Изменения**:
+- Использован полный путь: `command: /usr/local/sbin/php-fpm -F -O`
+- Добавлен healthcheck для мониторинга состояния PHP-FPM
+- Флаги `-F` (foreground) и `-O` (оптимизация) для стабильной работы
 
 ### Шаг 3: Проверка
-- [ ] Пересобрать контейнер: `docker compose build app`
-- [ ] Запустить контейнер: `docker compose up -d app`
-- [ ] Проверить логи: `docker compose logs app`
-- [ ] Проверить доступность PHP-FPM
-- [ ] Проверить, что nginx может подключиться
-- [ ] Проверить API: `curl http://localhost:8080/api/todos`
+- [x] Пересобрать контейнер: `docker compose build app` (не требуется, только перезапуск)
+- [x] Запустить контейнер: `docker compose up -d app` ✅
+- [x] Проверить логи: `docker compose logs app` ✅
+- [x] Проверить доступность PHP-FPM ✅
+- [x] Проверить, что nginx может подключиться ✅
+- [x] Проверить API: `curl http://localhost:8080/api/todos` ✅
+
+## Выполненные изменения
+
+### Обновлен docker-compose.yml
+
+**Изменения для сервиса `app`**:
+```yaml
+command: /usr/local/sbin/php-fpm -F -O  # Полный путь + флаги
+healthcheck:
+  test: ["CMD-SHELL", "php -r '$$sock = @fsockopen(\"127.0.0.1\", 9000); if ($$sock) { fclose($$sock); exit(0); } exit(1);'"]
+  interval: 10s
+  timeout: 5s
+  retries: 3
+  start_period: 10s
+```
+
+**Примечание**: Используется `$$` для экранирования переменных в Docker Compose YAML.
+
+**Преимущества**:
+- Использование полного пути гарантирует, что `php-fpm` будет найден
+- Флаги `-F -O` обеспечивают стабильную работу в foreground режиме
+- Healthcheck позволяет Docker отслеживать состояние контейнера
+- Healthcheck проверяет доступность PHP-FPM на порту 9000
+
+### Проверка совместимости с CI
+
+✅ **CI workflow не использует docker-compose** - изменения безопасны:
+- CI использует нативный PHP через `shivammathur/setup-php@v2`
+- CI использует GitHub Actions services для MySQL
+- Изменения в docker-compose.yml не влияют на CI workflow
+
+## Результаты проверки
+
+✅ **Контейнер запускается стабильно**: использует полный путь `/usr/local/sbin/php-fpm`  
+✅ **PHP-FPM доступен**: контейнер показывает статус `(healthy)`  
+✅ **Nginx подключается**: API доступен через `http://localhost:8080/api/todos`  
+✅ **Healthcheck работает**: контейнер проходит проверку здоровья  
+✅ **Нет перезапусков в цикле**: контейнер стабильно работает  
+✅ **Команда php-fpm доступна**: находится в `/usr/local/sbin/php-fpm`
+
+**Задача выполнена успешно!** ✅
 
 ## Технические детали
 

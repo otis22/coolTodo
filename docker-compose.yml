@@ -14,7 +14,13 @@ services:
       - COMPOSER_HOME=/var/www/project/backend/.composer
       - HOME=/var/www/project/backend
       - XDEBUG_MODE=develop,coverage
-    command: php-fpm
+    command: /usr/local/sbin/php-fpm -F -O
+    healthcheck:
+      test: ["CMD-SHELL", "php -r '$$sock = @fsockopen(\"127.0.0.1\", 9000); if ($$sock) { fclose($$sock); exit(0); } exit(1);'"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
     networks:
       - cooltodo
     depends_on:
