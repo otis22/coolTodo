@@ -1,49 +1,46 @@
+# Multi-stage build для оптимизации размера образа
+# Stage 1: Composer dependencies
+FROM composer:latest AS composer-stage
+WORKDIR /app
+COPY backend/composer.json backend/composer.lock* ./
+# Отключаем скрипты, так как artisan еще не скопирован
+RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist --ignore-platform-reqs --no-scripts
+
+# Stage 2: Production PHP-FPM
 FROM php:8.3-fpm
 
-# Установка системных зависимостей
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
+# Установка системных зависимостей (только необходимые для production)
+RUN apt-get update && apt-get install -y --no-install-recommends \
     libpng-dev \
     libonig-dev \
     libxml2-dev \
-    zip \
-    unzip \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd \
+    libzip-dev \
+    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Установка Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Установка Xdebug для разработки (версия 3.x, последняя стабильная)
-RUN pecl install xdebug-3.3.3 && docker-php-ext-enable xdebug
-
 # Настройка рабочей директории
-WORKDIR /var/www/html
+WORKDIR /var/www/project/backend
 
-# Копирование файлов зависимостей
-COPY backend/composer.json ./
-COPY backend/composer.lock* ./
+# Копирование зависимостей из composer stage
+COPY --from=composer-stage /app/vendor ./vendor
 
-# Установка зависимостей
-RUN composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
-
-# Копирование остальных файлов
-COPY . .
+# Копирование файлов приложения
+COPY backend/ ./
 
 # Установка прав
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 755 /var/www/html/storage \
-    && chmod -R 755 /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/project/backend \
+    && chmod -R 755 storage \
+    && chmod -R 755 bootstrap/cache
 
-# Оптимизация Laravel
+# Оптимизация Laravel (выполняется при сборке образа)
 RUN php artisan config:cache \
     && php artisan route:cache \
     && php artisan view:cache
 
 EXPOSE 9000
 
-CMD ["php-fpm"]
+# Использование полного пути к php-fpm для стабильности
+CMD ["/usr/local/sbin/php-fpm", "-F", "-O"]
 
 
 
