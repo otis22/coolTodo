@@ -38,7 +38,7 @@
 | B1 | Создать модели данных (Task, TaskStatus) | High | 2 | A5 | PHP, PHPUnit | Модели созданы, покрыты тестами (TDD: Red-Green-Refactor), PHPStan level 9 | Completed ✅ |
 | B2 | Создать миграции БД | High | 1 | B1 | Laravel Migrations | Таблица todos создана, миграция обратима | Completed ✅ |
 | B3 | Реализовать TodoRepository | High | 2 | B1, B2 | PHP, Eloquent, PHPUnit | Repository реализован, покрыт тестами (TDD: Red-Green-Refactor) | Completed ✅ |
-| B4 | Реализовать Use Cases (Create, Update, Delete, Toggle) | High | 3 | B1, B3 | PHP, PHPUnit | Все Use Cases реализованы, покрыты тестами >90% (TDD: Red-Green-Refactor) | Open |
+| B4 | Реализовать Use Cases (Create, Update, Delete, Toggle) | High | 3 | B1, B3 | PHP, PHPUnit | Все Use Cases реализованы, покрыты тестами >90% (TDD: Red-Green-Refactor) | In Progress |
 | B5 | Реализовать API контроллеры | High | 2 | B4 | Laravel, PHPUnit | Все endpoints работают, покрыты feature тестами (TDD: Red-Green-Refactor) | Open |
 | B6 | Реализовать валидацию запросов | High | 1 | B5 | Laravel Requests | Валидация работает, тесты проходят (TDD: Red-Green-Refactor) | Open |
 | B7 | Настроить API routes | High | 0.5 | B5 | Laravel Routes | Все routes зарегистрированы, работают | Open |
