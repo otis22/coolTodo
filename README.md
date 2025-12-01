@@ -38,9 +38,13 @@ git clone <repository-url>
 cd coolTodo
 ```
 
-2. Скопировать файл окружения:
+2. Настроить локальное окружение:
 ```bash
-cp .env.example .env
+# Скопировать файл окружения из примера
+cp backend/.env.example backend/.env
+
+# Сгенерировать ключ приложения
+./dev artisan key:generate
 ```
 
 3. Запустить Docker контейнеры:
@@ -53,18 +57,24 @@ docker-compose up -d
 ./dev composer install
 ```
 
-5. Установить зависимости frontend:
+5. Выполнить миграции базы данных:
+```bash
+./dev artisan migrate
+```
+
+6. Установить зависимости frontend:
 ```bash
 cd frontend
 npm install
 ```
 
-6. Запустить миграции:
-```bash
-./dev artisan migrate
-```
+7. Запустить приложение:
 
-7. Собрать фронтенд:
+**Backend API** будет доступен по адресу: `http://localhost:8080/api`
+
+**Frontend** будет доступен по адресу: `http://localhost:5173`
+
+Для production сборки фронтенда:
 ```bash
 cd frontend
 npm run build
