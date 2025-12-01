@@ -23,7 +23,7 @@
 | A19 | Исправить путь к coverage.xml в CI | Low | 0.1 | A17 | CI, Codecov | Coverage.xml генерируется в правильном месте, Codecov находит файл | Completed ✅ |
 | A20 | Исправить скрипт post-autoload-dump в composer.json | High | 0.1 | A16 | Composer, Laravel | composer install выполняется успешно, пакеты обнаруживаются | Completed ✅ |
 | A21 | Исправить путь к larastan extension.neon в phpstan.neon | High | 0.1 | A17 | PHPStan, CI | PHPStan находит extension.neon, запускается без ошибок | Completed ✅ |
-| A22 | Исправить форматирование кода PHP-CS-Fixer | Low | 0.25 | A11, A13 | PHP-CS-Fixer | PHP-CS-Fixer не находит файлов для исправления | Open |
+| A22 | Исправить форматирование кода PHP-CS-Fixer | Low | 0.25 | A11, A13 | PHP-CS-Fixer | PHP-CS-Fixer не находит файлов для исправления | Completed ✅ |
 | A23 | Исправить права доступа для composer install | High | 0.25 | A12, A16 | Docker, Composer | composer install выполняется успешно, vendor принадлежит пользователю хоста | Completed ✅ |
 | A24 | Исправить пути в конфигурации PHPStan | Medium | 0.25 | A11, A13 | PHPStan | PHPStan работает в Docker контейнере, анализирует все файлы | Completed ✅ |
 | A25 | Исправить пути к конфигурационным файлам в скрипте dev | High | 0.25 | A13, A17, A21 | Bash, Docker | PHPUnit и PHPStan работают с правильными конфигурациями через ./dev | Completed ✅ |
