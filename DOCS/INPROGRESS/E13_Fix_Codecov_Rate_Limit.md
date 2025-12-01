@@ -1,6 +1,7 @@
 # Task E13: Исправить проблему с Codecov rate limit
 
-**Статус**: Open  
+**Статус**: In Progress  
+**Начало**: 2025-12-01  
 **Приоритет**: Low  
 **Оценка**: 0.25 дня
 
@@ -43,19 +44,50 @@ Upload coverage to Codecov: Error uploading to https://codecov.io: Error: There 
 ## План выполнения
 
 ### Шаг 1: Получение Codecov token
-- [ ] Зарегистрироваться/войти в Codecov
-- [ ] Получить repository upload token для проекта
-- [ ] Добавить token в GitHub Secrets как `CODECOV_TOKEN`
+- [x] Зарегистрироваться/войти в Codecov ✅
+- [x] Получить repository upload token для проекта ✅
+- [x] Добавить token в GitHub Secrets как `CODECOV_TOKEN` ✅
 
 ### Шаг 2: Обновление workflow
-- [ ] Обновить шаг "Upload coverage to Codecov" в `.github/workflows/ci.yml`
-- [ ] Добавить использование `CODECOV_TOKEN` в конфигурацию
-- [ ] Проверить синтаксис workflow файла
+- [x] Обновить шаг "Upload coverage to Codecov" в `.github/workflows/ci.yml` ✅
+- [x] Добавить использование `CODECOV_TOKEN` в конфигурацию ✅
+- [x] Проверить синтаксис workflow файла ✅
 
 ### Шаг 3: Проверка
 - [ ] Сделать commit и push
 - [ ] Проверить, что coverage загружается без ошибок
 - [ ] Убедиться, что отчеты доступны в Codecov
+
+## Выполненные изменения
+
+### Обновлен workflow
+
+Добавлен `token: ${{ secrets.CODECOV_TOKEN }}` в шаг "Upload coverage to Codecov".
+
+**Было**:
+```yaml
+- name: Upload coverage to Codecov
+  if: always() && hashFiles('coverage.xml') != ''
+  uses: codecov/codecov-action@v3
+  with:
+    file: ./coverage.xml
+    flags: unittests
+    name: codecov-umbrella
+  continue-on-error: true
+```
+
+**Стало**:
+```yaml
+- name: Upload coverage to Codecov
+  if: always() && hashFiles('coverage.xml') != ''
+  uses: codecov/codecov-action@v3
+  with:
+    file: ./coverage.xml
+    flags: unittests
+    name: codecov-umbrella
+    token: ${{ secrets.CODECOV_TOKEN }}
+  continue-on-error: true
+```
 
 ## Технические детали
 
