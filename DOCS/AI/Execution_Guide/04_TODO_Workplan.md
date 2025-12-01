@@ -90,7 +90,7 @@
 | E1 | Настроить production Docker конфигурацию | Medium | 1 | A3 | Docker | Production образ собирается, оптимизирован | Completed ✅ |
 | E2 | Настроить оптимизацию производительности | Medium | 1.5 | E1 | OPCache, Composer | OPCache включен, автозагрузчик оптимизирован | Completed ✅ |
 | E3 | Настроить логирование | Medium | 1 | B5 | Laravel Logging | Логи пишутся, структурированы | Completed ✅ |
-| E4 | Настроить обработку ошибок | Medium | 1 | B5 | Laravel Exception Handler | Ошибки обрабатываются, логируются | Open |
+| E4 | Настроить обработку ошибок | Medium | 1 | B5 | Laravel Exception Handler | Ошибки обрабатываются, логируются | Completed ✅ |
 | E5 | Создать документацию API | Medium | 1 | B7 | Markdown/Swagger | API задокументировано | Open |
 | E6 | Исправить перезапуск app контейнера | High | 0.5 | A3 | Docker, PHP-FPM | App контейнер работает стабильно, PHP-FPM доступен | Completed ✅ |
 | E7 | Исправить 404 ошибки в nginx для API | High | 0.25 | A3, E6 | Nginx, Laravel | API endpoints доступны через nginx | Completed ✅ |
