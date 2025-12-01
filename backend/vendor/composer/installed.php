@@ -3,7 +3,7 @@
         'name' => 'cooltodo/backend',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '9472afccb0e828a7cfbe4bc81aad01e092c4bd26',
+        'reference' => 'a32c9f24ea30508e50eef73adb9fb9532ec49119',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -67,7 +67,7 @@
         'cooltodo/backend' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '9472afccb0e828a7cfbe4bc81aad01e092c4bd26',
+            'reference' => 'a32c9f24ea30508e50eef73adb9fb9532ec49119',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -138,6 +138,12 @@
             'install_path' => __DIR__ . '/../evenement/evenement',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'facebook/webdriver' => array(
+            'dev_requirement' => true,
+            'replaced' => array(
+                0 => '*',
+            ),
         ),
         'fakerphp/faker' => array(
             'pretty_version' => 'v1.24.1',
@@ -466,6 +472,15 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+        'laravel/dusk' => array(
+            'pretty_version' => 'v8.3.4',
+            'version' => '8.3.4.0',
+            'reference' => '33a4211c7b63ffe430bf30ec3c014012dcb6dfa6',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../laravel/dusk',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
         'laravel/framework' => array(
             'pretty_version' => 'v11.47.0',
             'version' => '11.47.0.0',
@@ -694,6 +709,15 @@
             'reference' => '4f7fd7836c6f332bb2933569e566a0d6c4cbed74',
             'type' => 'library',
             'install_path' => __DIR__ . '/../phar-io/version',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
+        'php-webdriver/webdriver' => array(
+            'pretty_version' => '1.15.2',
+            'version' => '1.15.2.0',
+            'reference' => '998e499b786805568deaf8cbf06f4044f05d91bf',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../php-webdriver/webdriver',
             'aliases' => array(),
             'dev_requirement' => true,
         ),

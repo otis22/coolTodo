@@ -72,7 +72,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | D1 | Написать Unit тесты для Domain Layer | High | 3 | B4 | PHPUnit | Покрытие >90%, все тесты проходят (TDD: Red-Green-Refactor) | Completed ✅ |
 | D2 | Написать Integration тесты для API | High | 2 | B7 | PHPUnit, Laravel | Все endpoints покрыты тестами (TDD: Red-Green-Refactor) | Completed ✅ |
-| D3.1 | Настроить Laravel Dusk для E2E тестов | High | 0.5 | C8 | Laravel Dusk | Dusk установлен и настроен, базовый тест работает | Open |
+| D3.1 | Настроить Laravel Dusk для E2E тестов | High | 0.5 | C8 | Laravel Dusk | Dusk установлен и настроен, базовый тест работает | Completed ✅ |
 | D3.2 | Написать E2E тест для создания задачи | High | 0.5 | D3.1 | Laravel Dusk | Тест создает задачу через UI и проверяет результат | Open |
 | D3.3 | Написать E2E тест для редактирования задачи | High | 0.5 | D3.1 | Laravel Dusk | Тест редактирует задачу через UI (double-click) | Open |
 | D3.4 | Написать E2E тест для переключения статуса и фильтрации | High | 0.5 | D3.1 | Laravel Dusk | Тест переключает статус, фильтрует задачи | Open |
