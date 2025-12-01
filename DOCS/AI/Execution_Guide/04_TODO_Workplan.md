@@ -42,7 +42,7 @@
 | B5 | Реализовать API контроллеры | High | 2 | B4 | Laravel, PHPUnit | Все endpoints работают, покрыты feature тестами (TDD: Red-Green-Refactor) | Completed ✅ |
 | B5.1 | Исправить окружение БД для feature тестов | High | 0.5 | B5 | Laravel, PHPUnit, MySQL | Feature тесты могут выполнять миграции, RefreshDatabase работает корректно | Completed ✅ |
 | B5.2 | Универсальная конфигурация БД для тестов | High | 0.25 | B5.1 | Laravel, PHPUnit, CI | Единая конфигурация работает локально и в CI без дублирования | Completed ✅ |
-| B5.3 | Проверить и исправить CI workflow для тестов с БД | High | 0.25 | B5.2 | CI, GitHub Actions | Тесты с БД проходят в CI, все переменные окружения настроены | In Progress |
+| B5.3 | Проверить и исправить CI workflow для тестов с БД | High | 0.25 | B5.2 | CI, GitHub Actions | Тесты с БД проходят в CI, все переменные окружения настроены | Completed ✅ |
 | B5.4 | Системное решение для coverage.xml в локальном и CI окружении | High | 0.5 | B5.3 | Docker, Xdebug, CI | Coverage.xml генерируется локально и в CI, Xdebug настроен | Completed ✅ |
 | B5.5 | Исправить форматирование кода PHP-CS-Fixer | Medium | 0.25 | B5 | PHP-CS-Fixer | Все файлы отформатированы согласно PSR-12 | Completed ✅ |
 | B5.6 | Улучшить обработку ошибок в CI workflow | Medium | 0.5 | B5.3 | CI, GitHub Actions | Критические шаги останавливают workflow, некритические продолжаются | Completed ✅ |
@@ -97,7 +97,7 @@
 | E8 | Настроить CORS для API | Medium | 0.25 | E6, E7 | Laravel CORS | CORS заголовки отправляются, запросы с фронтенда разрешены | Completed ✅ |
 | E9 | Настроить локальное окружение (.env) | High | 0.25 | A3, E6 | Laravel, Docker | .env.example создан, локальное окружение работает | Completed ✅ |
 | E10 | Удалить устаревший атрибут version из docker-compose.yml | Low | 0.05 | A3 | Docker Compose | Предупреждение об устаревшем атрибуте исчезло | Completed ✅ |
-| E11 | Создать скрипт инициализации проекта | Medium | 0.5 | E9 | Bash, Docker | Скрипт автоматически настраивает проект для разработки | Open |
+| E11 | Создать скрипт инициализации проекта | Medium | 0.5 | E9 | Bash, Docker | Скрипт автоматически настраивает проект для разработки | Completed ✅ |
 
 ## Индикаторы статуса
 
