@@ -121,4 +121,5 @@ jobs:
           file: ./coverage.xml
           flags: unittests
           name: codecov-umbrella
+        continue-on-error: true
 
