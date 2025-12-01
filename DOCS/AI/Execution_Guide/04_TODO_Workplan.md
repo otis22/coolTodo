@@ -87,6 +87,7 @@
 | E5 | Создать документацию API | Medium | 1 | B7 | Markdown/Swagger | API задокументировано | Open |
 | E6 | Исправить перезапуск app контейнера | High | 0.5 | A3 | Docker, PHP-FPM | App контейнер работает стабильно, PHP-FPM доступен | Open |
 | E7 | Исправить 404 ошибки в nginx для API | High | 0.25 | A3, E6 | Nginx, Laravel | API endpoints доступны через nginx | Open |
+| E8 | Настроить CORS для API | Medium | 0.25 | E6, E7 | Laravel CORS | CORS заголовки отправляются, запросы с фронтенда разрешены | Open |
 
 ## Индикаторы статуса
 
