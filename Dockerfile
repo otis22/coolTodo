@@ -32,10 +32,9 @@ RUN chown -R www-data:www-data /var/www/project/backend \
     && chmod -R 755 storage \
     && chmod -R 755 bootstrap/cache
 
-# Оптимизация Laravel (выполняется при сборке образа)
-RUN php artisan config:cache \
-    && php artisan route:cache \
-    && php artisan view:cache
+# Примечание: Оптимизация Laravel (config:cache, route:cache, view:cache)
+# должна выполняться при запуске контейнера с правильными переменными окружения,
+# а не при сборке образа. Это можно сделать через entrypoint скрипт или команду запуска.
 
 EXPOSE 9000
 
