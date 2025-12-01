@@ -13,7 +13,9 @@
           @deleted="handleTodoDeleted"
         />
       </div>
-      <div class="filters">
+      <div class="footer">
+        <span class="counter">{{ activeTodosCount }} {{ activeTodosCount === 1 ? 'item' : 'items' }} left</span>
+        <div class="filters">
         <button
           class="filter-btn"
           :class="{ active: currentFilter === 'all' }"
@@ -35,6 +37,7 @@
         >
           Completed
         </button>
+        </div>
       </div>
     </template>
   </div>
@@ -60,6 +63,10 @@ const filteredTodos = computed(() => {
     default:
       return allTodos.value;
   }
+});
+
+const activeTodosCount = computed(() => {
+  return allTodos.value.filter((todo) => todo.status === 'active').length;
 });
 
 async function loadTodos() {
@@ -119,13 +126,23 @@ onMounted(() => {
   padding: 0;
 }
 
-.filters {
+.footer {
   display: flex;
-  justify-content: center;
-  gap: 8px;
+  justify-content: space-between;
+  align-items: center;
   padding: 12px 16px;
   border-top: 1px solid #e6e6e6;
   background-color: #fff;
+  font-size: 14px;
+}
+
+.counter {
+  color: #777;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
 }
 
 .filter-btn {
