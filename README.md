@@ -152,6 +152,28 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ./dev phpunit
 ```
 
+**Покрытие кода (Code Coverage)**:
+```bash
+# Генерация текстового и XML отчета
+./dev phpunit --coverage
+
+# Или через алиас
+./dev coverage
+
+# Только для Unit тестов
+./dev phpunit --coverage --testsuite=Unit
+
+# Только для Feature тестов
+./dev phpunit --coverage --testsuite=Feature
+```
+
+Coverage отчеты:
+- **Текстовый отчет**: выводится в консоль
+- **XML отчет**: сохраняется в `coverage.xml` (используется Codecov в CI)
+- **Текущее покрытие**: ~99% для Domain и Infrastructure слоев
+
+В CI workflow coverage автоматически загружается в Codecov.
+
 **С покрытием кода**:
 ```bash
 ./dev phpunit --coverage-text
