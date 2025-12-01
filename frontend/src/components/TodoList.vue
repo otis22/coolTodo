@@ -15,7 +15,16 @@
       </div>
       <div class="footer">
         <span class="counter">{{ activeTodosCount }} {{ activeTodosCount === 1 ? 'item' : 'items' }} left</span>
-        <div class="filters">
+        <div class="footer-actions">
+          <button
+            v-if="completedTodosCount > 0"
+            class="clear-completed-btn"
+            @click="handleClearCompleted"
+            :disabled="isLoading"
+          >
+            Clear completed
+          </button>
+          <div class="filters">
         <button
           class="filter-btn"
           :class="{ active: currentFilter === 'all' }"
@@ -37,6 +46,7 @@
         >
           Completed
         </button>
+          </div>
         </div>
       </div>
     </template>
@@ -45,7 +55,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue';
-import { getTodos } from '../services/api.js';
+import { getTodos, deleteCompleted } from '../services/api.js';
 import TodoItem from './TodoItem.vue';
 
 const allTodos = ref([]);
@@ -67,6 +77,10 @@ const filteredTodos = computed(() => {
 
 const activeTodosCount = computed(() => {
   return allTodos.value.filter((todo) => todo.status === 'active').length;
+});
+
+const completedTodosCount = computed(() => {
+  return allTodos.value.filter((todo) => todo.status === 'completed').length;
 });
 
 async function loadTodos() {
@@ -92,6 +106,24 @@ function handleTodoUpdated(updatedTodo) {
 
 function handleTodoDeleted(todoId) {
   allTodos.value = allTodos.value.filter((todo) => todo.id !== todoId);
+}
+
+async function handleClearCompleted() {
+  if (isLoading.value || completedTodosCount.value === 0) return;
+  
+  if (!confirm(`Удалить ${completedTodosCount.value} завершенную задачу?`)) return;
+  
+  try {
+    isLoading.value = true;
+    await deleteCompleted();
+    // Удаляем completed задачи из локального списка
+    allTodos.value = allTodos.value.filter((todo) => todo.status !== 'completed');
+  } catch (error) {
+    console.error('Failed to clear completed todos:', error);
+    alert(`Ошибка при удалении: ${error.message}`);
+  } finally {
+    isLoading.value = false;
+  }
 }
 
 onMounted(() => {
@@ -138,6 +170,33 @@ onMounted(() => {
 
 .counter {
   color: #777;
+}
+
+.footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.clear-completed-btn {
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  background: none;
+  color: #777;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.clear-completed-btn:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+.clear-completed-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 
 .filters {
