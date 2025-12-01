@@ -80,7 +80,7 @@
 | D4 | Настроить покрытие кода | High | 0.5 | D1-D3 | PHPUnit, Xdebug | Coverage reports генерируются | Completed ✅ |
 | D5.1 | Исправить предупреждения PHPStan в Domain Layer | High | 0.5 | B4 | PHPStan | Domain Layer без предупреждений PHPStan level 9 | Completed ✅ |
 | D5.2 | Исправить предупреждения PHPStan в Infrastructure Layer | High | 0.5 | B4 | PHPStan | Infrastructure Layer без предупреждений PHPStan level 9 | Completed ✅ |
-| D5.3 | Исправить предупреждения PHPStan в Controllers | High | 0.5 | B5 | PHPStan | Controllers без предупреждений PHPStan level 9 | Open |
+| D5.3 | Исправить предупреждения PHPStan в Controllers | High | 0.5 | B5 | PHPStan | Controllers без предупреждений PHPStan level 9 | Completed ✅ |
 | D5.4 | Проверить и исправить оставшиеся предупреждения PHPStan | High | 0.5 | D5.1-D5.3 | PHPStan | PHPStan level 9 без ошибок во всем проекте | Open |
 
 ## Phase E: DevOps & Deployment (Развертывание)
