@@ -172,4 +172,75 @@ class TodoControllerTest extends TestCase
                 'deleted' => 0,
             ]);
     }
+
+    public function test_store_returns_422_when_title_missing(): void
+    {
+        $response = $this->postJson('/api/todos', []);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['title']);
+    }
+
+    public function test_store_returns_422_when_title_empty(): void
+    {
+        $response = $this->postJson('/api/todos', [
+            'title' => '',
+        ]);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['title']);
+    }
+
+    public function test_store_returns_422_when_title_too_long(): void
+    {
+        $response = $this->postJson('/api/todos', [
+            'title' => str_repeat('a', 256),
+        ]);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['title']);
+    }
+
+    public function test_update_returns_422_when_title_missing(): void
+    {
+        $task = new Task(null, 'Test Task', TaskStatus::active());
+        $savedTask = $this->repository->save($task);
+        $taskId = $savedTask->getId();
+        assert($taskId !== null, 'Saved task must have an ID');
+
+        $response = $this->putJson("/api/todos/{$taskId}", []);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['title']);
+    }
+
+    public function test_update_returns_422_when_title_empty(): void
+    {
+        $task = new Task(null, 'Test Task', TaskStatus::active());
+        $savedTask = $this->repository->save($task);
+        $taskId = $savedTask->getId();
+        assert($taskId !== null, 'Saved task must have an ID');
+
+        $response = $this->putJson("/api/todos/{$taskId}", [
+            'title' => '',
+        ]);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['title']);
+    }
+
+    public function test_update_returns_422_when_title_too_long(): void
+    {
+        $task = new Task(null, 'Test Task', TaskStatus::active());
+        $savedTask = $this->repository->save($task);
+        $taskId = $savedTask->getId();
+        assert($taskId !== null, 'Saved task must have an ID');
+
+        $response = $this->putJson("/api/todos/{$taskId}", [
+            'title' => str_repeat('a', 256),
+        ]);
+
+        $response->assertStatus(422)
+            ->assertJsonValidationErrors(['title']);
+    }
 }

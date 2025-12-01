@@ -10,6 +10,8 @@ use App\Domain\UseCases\DeleteTodoUseCase;
 use App\Domain\UseCases\GetTodosUseCase;
 use App\Domain\UseCases\ToggleTodoStatusUseCase;
 use App\Domain\UseCases\UpdateTodoUseCase;
+use App\Infrastructure\Http\Requests\CreateTodoRequest;
+use App\Infrastructure\Http\Requests\UpdateTodoRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -46,13 +48,11 @@ class TodoController
     /**
      * Создать новую задачу.
      */
-    public function store(Request $request): JsonResponse
+    public function store(CreateTodoRequest $request): JsonResponse
     {
-        $title = $request->input('title');
-        if (! is_string($title) || $title === '') {
-            return response()->json(['error' => 'Title is required'], 400);
-        }
-
+        $validated = $request->validated();
+        /** @var string $title */
+        $title = $validated['title'];
         $task = $this->createTodoUseCase->execute($title);
 
         return response()->json($this->taskToArray($task), 201);
@@ -61,14 +61,12 @@ class TodoController
     /**
      * Обновить задачу.
      */
-    public function update(Request $request, string $id): JsonResponse
+    public function update(UpdateTodoRequest $request, string $id): JsonResponse
     {
         try {
-            $title = $request->input('title');
-            if (! is_string($title) || $title === '') {
-                return response()->json(['error' => 'Title is required'], 400);
-            }
-
+            $validated = $request->validated();
+            /** @var string $title */
+            $title = $validated['title'];
             $taskId = (int) $id;
             $task = $this->updateTodoUseCase->execute($taskId, $title);
 
