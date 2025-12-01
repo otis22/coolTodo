@@ -65,4 +65,3 @@ class CreateTodoUseCaseTest extends TestCase
         $this->assertEquals($title, $result->getTitle());
     }
 }
-

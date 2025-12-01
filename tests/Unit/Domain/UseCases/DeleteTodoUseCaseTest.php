@@ -65,4 +65,3 @@ class DeleteTodoUseCaseTest extends TestCase
         $this->useCase->execute($taskId);
     }
 }
-

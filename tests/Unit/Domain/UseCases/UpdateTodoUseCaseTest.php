@@ -100,4 +100,3 @@ class UpdateTodoUseCaseTest extends TestCase
         $this->assertTrue($result->getStatus()->isCompleted());
     }
 }
-

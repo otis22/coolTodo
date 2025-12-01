@@ -100,4 +100,3 @@ class ToggleTodoStatusUseCaseTest extends TestCase
         $this->useCase->execute($taskId);
     }
 }
-

@@ -49,7 +49,7 @@ class TodoController
     public function store(Request $request): JsonResponse
     {
         $title = $request->input('title');
-        if (!is_string($title) || $title === '') {
+        if (! is_string($title) || $title === '') {
             return response()->json(['error' => 'Title is required'], 400);
         }
 
@@ -65,7 +65,7 @@ class TodoController
     {
         try {
             $title = $request->input('title');
-            if (!is_string($title) || $title === '') {
+            if (! is_string($title) || $title === '') {
                 return response()->json(['error' => 'Title is required'], 400);
             }
 

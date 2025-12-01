@@ -33,6 +33,7 @@ class ToggleTodoStatusUseCase
         }
 
         $task->toggleStatus();
+
         return $this->repository->save($task);
     }
 }

@@ -27,6 +27,7 @@ class CreateTodoUseCase
     public function execute(string $title): Task
     {
         $task = new Task(null, $title, TaskStatus::active());
+
         return $this->repository->save($task);
     }
 }

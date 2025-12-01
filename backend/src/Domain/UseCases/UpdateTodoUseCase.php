@@ -34,6 +34,7 @@ class UpdateTodoUseCase
         }
 
         $task->updateTitle($title);
+
         return $this->repository->save($task);
     }
 }
