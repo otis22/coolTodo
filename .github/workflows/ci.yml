@@ -86,7 +86,6 @@ jobs:
           DB_DATABASE: cooltodo_test
           DB_USERNAME: root
           DB_PASSWORD: root
-        continue-on-error: true
 
       - name: Run PHP-CS-Fixer
         working-directory: backend
@@ -108,7 +107,6 @@ jobs:
           DB_DATABASE: cooltodo_test
           DB_USERNAME: root
           DB_PASSWORD: root
-        continue-on-error: true
 
       - name: Build frontend
         working-directory: frontend
