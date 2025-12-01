@@ -59,7 +59,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | C1 | Создать API сервис (TodoApiService) | High | 1 | B7 | Vue, Axios/Fetch | Сервис работает, тесты проходят (TDD: Red-Green-Refactor) | Completed ✅ |
 | C2 | Реализовать компонент TodoItem | High | 2 | C1 | Vue 3, Vite | Компонент отображает задачу, обрабатывает события | Completed ✅ |
-| C3 | Реализовать компонент TodoList | High | 2 | C2 | Vue 3, Vite | Компонент отображает список, фильтрация работает | Open |
+| C3 | Реализовать компонент TodoList | High | 2 | C2 | Vue 3, Vite | Компонент отображает список, фильтрация работает | Completed ✅ |
 | C4 | Реализовать фильтрацию (All/Active/Completed) | High | 1 | C3 | Vue 3 | Фильтрация работает на клиенте | Open |
 | C5 | Реализовать счетчик активных задач | High | 0.5 | C3 | Vue 3 | Счетчик отображается и обновляется | Open |
 | C6 | Реализовать редактирование задачи (double-click) | High | 1.5 | C2 | Vue 3 | Редактирование работает (Enter/Escape) | Open |
@@ -85,6 +85,8 @@
 | E3 | Настроить логирование | Medium | 1 | B5 | Laravel Logging | Логи пишутся, структурированы | Open |
 | E4 | Настроить обработку ошибок | Medium | 1 | B5 | Laravel Exception Handler | Ошибки обрабатываются, логируются | Open |
 | E5 | Создать документацию API | Medium | 1 | B7 | Markdown/Swagger | API задокументировано | Open |
+| E6 | Исправить перезапуск app контейнера | High | 0.5 | A3 | Docker, PHP-FPM | App контейнер работает стабильно, PHP-FPM доступен | Open |
+| E7 | Исправить 404 ошибки в nginx для API | High | 0.25 | A3, E6 | Nginx, Laravel | API endpoints доступны через nginx | Open |
 
 ## Индикаторы статуса
 
