@@ -45,6 +45,9 @@
 | B5.3 | Проверить и исправить CI workflow для тестов с БД | High | 0.25 | B5.2 | CI, GitHub Actions | Тесты с БД проходят в CI, все переменные окружения настроены | In Progress |
 | B5.4 | Системное решение для coverage.xml в локальном и CI окружении | High | 0.5 | B5.3 | Docker, Xdebug, CI | Coverage.xml генерируется локально и в CI, Xdebug настроен | Completed ✅ |
 | B5.5 | Исправить форматирование кода PHP-CS-Fixer | Medium | 0.25 | B5 | PHP-CS-Fixer | Все файлы отформатированы согласно PSR-12 | Completed ✅ |
+| B5.6 | Улучшить обработку ошибок в CI workflow | Medium | 0.5 | B5.3 | CI, GitHub Actions | Критические шаги останавливают workflow, некритические продолжаются | Open |
+| B5.7 | Добавить проверку готовности MySQL перед миграциями | Medium | 0.25 | B5.3 | CI, MySQL | MySQL проверяется на готовность, нет race conditions | Open |
+| B5.8 | Исправить генерацию coverage при падении тестов | Low | 0.25 | B5.4, B5.6 | CI, Coverage | Coverage генерируется даже при ошибках тестов | Open |
 | B6 | Реализовать валидацию запросов | High | 1 | B5 | Laravel Requests | Валидация работает, тесты проходят (TDD: Red-Green-Refactor) | Completed ✅ |
 | B7 | Настроить API routes | High | 0.5 | B5 | Laravel Routes | Все routes зарегистрированы, работают | Open |
 
