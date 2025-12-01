@@ -34,6 +34,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Command\CompleteCommand;
 use Symfony\Component\Console\Command\DumpCompletionCommand;
 use Symfony\Component\Console\Command\ListCommand;
+use Symfony\Component\Console\Exception\CommandNotFoundException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\ConsoleOutputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -49,13 +50,14 @@ use Symfony\Component\Console\Output\OutputInterface;
 final class Application extends BaseApplication
 {
     public const NAME = 'PHP CS Fixer';
-    public const VERSION = '3.91.0';
+    public const VERSION = '3.91.1';
     public const VERSION_CODENAME = 'Folding Bike';
 
     /**
      * @readonly
      */
     private ToolInfo $toolInfo;
+
     private ?Command $executedCommand = null;
 
     public function __construct()
@@ -82,7 +84,7 @@ final class Application extends BaseApplication
     // polyfill for `add` method, as it is not available in Symfony 8.0
     public function add(Command $command): ?Command
     {
-        if (method_exists($this, 'addCommand')) { // @phpstan-ignore function.alreadyNarrowedType
+        if (method_exists($this, 'addCommand')) { // @phpstan-ignore-line
             return $this->addCommand($command);
         }
 
@@ -104,8 +106,22 @@ final class Application extends BaseApplication
             $warningsDetector = new WarningsDetector($this->toolInfo);
             $warningsDetector->detectOldVendor();
             $warningsDetector->detectOldMajor();
-            $warningsDetector->detectHigherPhpVersion();
-            $warningsDetector->detectNonMonolithic();
+
+            try {
+                $commandName = $this->getCommandName($input);
+                if (null === $commandName) {
+                    throw new CommandNotFoundException('No command name found.');
+                }
+                $command = $this->find($commandName);
+
+                if (($command instanceof CheckCommand) || ($command instanceof FixCommand)) {
+                    $warningsDetector->detectHigherPhpVersion();
+                    $warningsDetector->detectNonMonolithic();
+                }
+            } catch (CommandNotFoundException $e) {
+                // no-op
+            }
+
             $warnings = $warningsDetector->getWarnings();
 
             if (\count($warnings) > 0) {
