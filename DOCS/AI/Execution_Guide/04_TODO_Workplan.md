@@ -77,7 +77,7 @@
 | D3.3 | Написать E2E тест для редактирования задачи | High | 0.5 | D3.1 | Laravel Dusk | Тест редактирует задачу через UI (double-click) | Completed ✅ |
 | D3.4 | Написать E2E тест для переключения статуса и фильтрации | High | 0.5 | D3.1 | Laravel Dusk | Тест переключает статус, фильтрует задачи | Completed ✅ |
 | D3.5 | Написать E2E тест для удаления задач | High | 0.5 | D3.1 | Laravel Dusk | Тест удаляет одну задачу и все completed задачи | Completed ✅ |
-| D4 | Настроить покрытие кода | High | 0.5 | D1-D3 | PHPUnit, Xdebug | Coverage reports генерируются | Open |
+| D4 | Настроить покрытие кода | High | 0.5 | D1-D3 | PHPUnit, Xdebug | Coverage reports генерируются | Completed ✅ |
 | D5.1 | Исправить предупреждения PHPStan в Domain Layer | High | 0.5 | B4 | PHPStan | Domain Layer без предупреждений PHPStan level 9 | Open |
 | D5.2 | Исправить предупреждения PHPStan в Infrastructure Layer | High | 0.5 | B4 | PHPStan | Infrastructure Layer без предупреждений PHPStan level 9 | Open |
 | D5.3 | Исправить предупреждения PHPStan в Controllers | High | 0.5 | B5 | PHPStan | Controllers без предупреждений PHPStan level 9 | Open |
