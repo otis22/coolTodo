@@ -63,7 +63,7 @@
 | C4 | Реализовать фильтрацию (All/Active/Completed) | High | 1 | C3 | Vue 3 | Фильтрация работает на клиенте | Completed ✅ |
 | C5 | Реализовать счетчик активных задач | High | 0.5 | C3 | Vue 3 | Счетчик отображается и обновляется | Completed ✅ |
 | C6 | Реализовать редактирование задачи (double-click) | High | 1.5 | C2 | Vue 3 | Редактирование работает (Enter/Escape) | Completed ✅ |
-| C7 | Реализовать кнопку "Clear completed" | High | 0.5 | C3 | Vue 3 | Кнопка удаляет все completed задачи | Open |
+| C7 | Реализовать кнопку "Clear completed" | High | 0.5 | C3 | Vue 3 | Кнопка удаляет все completed задачи | Completed ✅ |
 | C8 | Интегрировать фронтенд с бэкендом | High | 1 | C1-C7 | Vue, Laravel | Все операции работают через API | Open |
 
 ## Phase D: Testing & Quality (Тестирование и качество)
