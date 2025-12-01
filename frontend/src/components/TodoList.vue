@@ -17,6 +17,14 @@
         <span class="counter">{{ activeTodosCount }} {{ activeTodosCount === 1 ? 'item' : 'items' }} left</span>
         <div class="footer-actions">
           <button
+            class="refresh-btn"
+            @click="loadTodos"
+            :disabled="isLoading"
+            title="Обновить список задач"
+          >
+            ↻
+          </button>
+          <button
             v-if="completedTodosCount > 0"
             class="clear-completed-btn"
             @click="handleClearCompleted"
@@ -131,9 +139,10 @@ function addTodo(newTodo) {
   allTodos.value.unshift(newTodo);
 }
 
-// Экспортируем метод addTodo для использования из родительского компонента
+// Экспортируем методы для использования из родительского компонента
 defineExpose({
   addTodo,
+  refresh: loadTodos,
 });
 
 onMounted(() => {
@@ -205,6 +214,34 @@ onMounted(() => {
 }
 
 .clear-completed-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.refresh-btn {
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  background: none;
+  color: #777;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.2s;
+  line-height: 1;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.refresh-btn:hover {
+  border-color: #e6e6e6;
+  color: #333;
+  transform: rotate(180deg);
+}
+
+.refresh-btn:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }

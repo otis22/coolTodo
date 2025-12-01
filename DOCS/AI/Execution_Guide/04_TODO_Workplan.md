@@ -99,7 +99,7 @@
 | E10 | Удалить устаревший атрибут version из docker-compose.yml | Low | 0.05 | A3 | Docker Compose | Предупреждение об устаревшем атрибуте исчезло | Completed ✅ |
 | E11 | Создать скрипт инициализации проекта | Medium | 0.5 | E9 | Bash, Docker | Скрипт автоматически настраивает проект для разработки | Completed ✅ |
 | E12 | Исправить ошибки PHP-CS-Fixer в CI workflow | Medium | 0.25 | E11 | PHP-CS-Fixer, CI | PHP-CS-Fixer не находит файлов для исправления в CI | Completed ✅ |
-| E13 | Исправить проблему с Codecov rate limit | Low | 0.25 | D4 | Codecov, CI | Codecov загружает coverage без ошибок 429 | Open |
+| E13 | Исправить проблему с Codecov rate limit | Low | 0.25 | D4 | Codecov, CI | Codecov загружает coverage без ошибок 429 | In Progress |
 | E14 | Пересмотреть continue-on-error для PHPStan в CI | Medium | 0.1 | D5.4 | PHPStan, CI | PHPStan является критичным шагом или обоснован continue-on-error | Completed ✅ |
 
 ## Индикаторы статуса
