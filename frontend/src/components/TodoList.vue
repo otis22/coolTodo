@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, defineExpose } from 'vue';
 import { getTodos, deleteCompleted } from '../services/api.js';
 import TodoItem from './TodoItem.vue';
 
@@ -125,6 +125,16 @@ async function handleClearCompleted() {
     isLoading.value = false;
   }
 }
+
+function addTodo(newTodo) {
+  // Добавляем новую задачу в начало списка
+  allTodos.value.unshift(newTodo);
+}
+
+// Экспортируем метод addTodo для использования из родительского компонента
+defineExpose({
+  addTodo,
+});
 
 onMounted(() => {
   loadTodos();
