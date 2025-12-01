@@ -96,7 +96,10 @@ async function loadTodos() {
   error.value = null;
 
   try {
-    allTodos.value = await getTodos();
+    const todos = await getTodos();
+    console.log('Loaded todos:', todos);
+    allTodos.value = todos;
+    console.log('allTodos after assignment:', allTodos.value);
   } catch (err) {
     error.value = err.message || 'Ошибка при загрузке задач';
     console.error('Failed to load todos:', err);
