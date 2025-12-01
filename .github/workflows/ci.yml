@@ -107,7 +107,7 @@ jobs:
       - name: Run PHPStan
         working-directory: backend
         run: vendor/bin/phpstan analyse --memory-limit=1G --configuration=../phpstan.neon
-        continue-on-error: true
+        # continue-on-error убран, так как PHPStan должен быть критичным для качества кода
 
       - name: Run PHPUnit tests
         working-directory: backend
