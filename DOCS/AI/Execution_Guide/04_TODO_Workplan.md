@@ -58,7 +58,7 @@
 | Task ID | Description | Priority | Effort (days) | Dependencies | Tools | Acceptance Criteria | Status |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | C1 | Создать API сервис (TodoApiService) | High | 1 | B7 | Vue, Axios/Fetch | Сервис работает, тесты проходят (TDD: Red-Green-Refactor) | Completed ✅ |
-| C2 | Реализовать компонент TodoItem | High | 2 | C1 | Vue 3, Vite | Компонент отображает задачу, обрабатывает события | Open |
+| C2 | Реализовать компонент TodoItem | High | 2 | C1 | Vue 3, Vite | Компонент отображает задачу, обрабатывает события | Completed ✅ |
 | C3 | Реализовать компонент TodoList | High | 2 | C2 | Vue 3, Vite | Компонент отображает список, фильтрация работает | Open |
 | C4 | Реализовать фильтрацию (All/Active/Completed) | High | 1 | C3 | Vue 3 | Фильтрация работает на клиенте | Open |
 | C5 | Реализовать счетчик активных задач | High | 0.5 | C3 | Vue 3 | Счетчик отображается и обновляется | Open |
