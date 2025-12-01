@@ -101,6 +101,8 @@
 | E12 | Исправить ошибки PHP-CS-Fixer в CI workflow | Medium | 0.25 | E11 | PHP-CS-Fixer, CI | PHP-CS-Fixer не находит файлов для исправления в CI | Completed ✅ |
 | E13 | Исправить проблему с Codecov rate limit | Low | 0.25 | D4 | Codecov, CI | Codecov загружает coverage без ошибок 429 | Completed ✅ |
 | E14 | Пересмотреть continue-on-error для PHPStan в CI | Medium | 0.1 | D5.4 | PHPStan, CI | PHPStan является критичным шагом или обоснован continue-on-error | Completed ✅ |
+| E15 | Исправить проблему с tinker (psysh config path) | Medium | 0.25 | E6, E9 | Laravel, Docker | Tinker запускается без ошибок, psysh создает конфигурацию в правильном месте | Open |
+| E16 | Исправить стабильность app контейнера (PHP-FPM) | High | 0.5 | A3, E6 | Docker, PHP-FPM | App контейнер запускается стабильно, PHP-FPM доступен, нет 502 ошибок | Open |
 
 ## Индикаторы статуса
 
