@@ -89,6 +89,7 @@
 | E7 | Исправить 404 ошибки в nginx для API | High | 0.25 | A3, E6 | Nginx, Laravel | API endpoints доступны через nginx | Completed ✅ |
 | E8 | Настроить CORS для API | Medium | 0.25 | E6, E7 | Laravel CORS | CORS заголовки отправляются, запросы с фронтенда разрешены | Completed ✅ |
 | E9 | Настроить локальное окружение (.env) | High | 0.25 | A3, E6 | Laravel, Docker | .env.example создан, локальное окружение работает | Open |
+| E10 | Удалить устаревший атрибут version из docker-compose.yml | Low | 0.05 | A3 | Docker Compose | Предупреждение об устаревшем атрибуте исчезло | Open |
 
 ## Индикаторы статуса
 
