@@ -77,10 +77,10 @@ jobs:
           php artisan key:generate --ansi || echo "Key generation skipped"
 
       - name: Wait for MySQL
+        working-directory: backend
         run: |
           for i in {1..30}; do
-            if mysqladmin ping -h 127.0.0.1 -uroot -proot --silent 2>/dev/null; then
-              echo "MySQL is ready!"
+            if php -r "try { new PDO('mysql:host=127.0.0.1;port=3306', 'root', 'root'); echo 'MySQL is ready!'; exit(0); } catch (Exception \$e) { exit(1); }" 2>/dev/null; then
               break
             fi
             echo "Waiting for MySQL... ($i/30)"
