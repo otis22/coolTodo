@@ -25,6 +25,17 @@ error() {
     exit 1
 }
 
+# Функция для определения команды docker compose
+get_docker_compose() {
+    if command -v docker-compose &> /dev/null; then
+        echo "docker-compose"
+    elif docker compose version &> /dev/null; then
+        echo "docker compose"
+    else
+        error "Docker Compose не найден"
+    fi
+}
+
 # Проверка наличия необходимых инструментов
 check_requirements() {
     info "Проверка требований..."
@@ -80,15 +91,7 @@ generate_app_key() {
 start_docker() {
     info "Запуск Docker контейнеров..."
     
-    # Определяем команду docker compose
-    if command -v docker-compose &> /dev/null; then
-        DOCKER_COMPOSE="docker-compose"
-    elif docker compose version &> /dev/null; then
-        DOCKER_COMPOSE="docker compose"
-    else
-        error "Docker Compose не найден"
-    fi
-    
+    DOCKER_COMPOSE=$(get_docker_compose)
     $DOCKER_COMPOSE up -d
     
     info "Ожидание готовности MySQL..."
@@ -135,9 +138,14 @@ install_frontend_dependencies() {
     info "Установка зависимостей frontend..."
     
     if [ -d "frontend" ]; then
-        cd frontend
-        npm ci
-        cd ..
+        DOCKER_COMPOSE=$(get_docker_compose)
+        
+        # Устанавливаем зависимости через контейнер node
+        # Используем run --rm для одноразового выполнения - это более надежно,
+        # так как не зависит от состояния контейнера node
+        # Контейнер node может быть не запущен или иметь проблемы с правами
+        $DOCKER_COMPOSE run --rm node sh -c "cd /app && npm ci"
+        
         info "Зависимости frontend установлены"
     else
         warn "Директория frontend не найдена, пропускаем установку зависимостей frontend"
