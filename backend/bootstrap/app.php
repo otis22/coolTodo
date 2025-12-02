@@ -5,7 +5,38 @@ declare(strict_types=1);
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
-use Throwable;
+
+/**
+ * Получить HTTP статус код для исключения
+ */
+if (!function_exists('getStatusCode')) {
+    function getStatusCode(Throwable $e): int
+    {
+        if ($e instanceof \Illuminate\Validation\ValidationException) {
+            return 422;
+        }
+        if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
+            return 404;
+        }
+        if ($e instanceof \Illuminate\Auth\AuthenticationException) {
+            return 401;
+        }
+        if ($e instanceof \Illuminate\Auth\Access\AuthorizationException) {
+            return 403;
+        }
+        if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
+            return 404;
+        }
+        if ($e instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException) {
+            return 405;
+        }
+        if ($e instanceof \Symfony\Component\HttpKernel\Exception\HttpException) {
+            return $e->getStatusCode();
+        }
+
+        return 500;
+    }
+}
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withProviders([
@@ -35,7 +66,13 @@ return Application::configure(basePath: dirname(__DIR__))
         });
 
         // Обработка исключений для API запросов
+        // ValidationException обрабатывается Laravel автоматически с правильным форматом
         $exceptions->render(function (Throwable $e, \Illuminate\Http\Request $request) {
+            // Пропускаем ValidationException - Laravel обработает его сам
+            if ($e instanceof \Illuminate\Validation\ValidationException) {
+                return null;
+            }
+
             if ($request->is('api/*') || $request->expectsJson()) {
                 return response()->json([
                     'message' => $e->getMessage(),
@@ -48,36 +85,6 @@ return Application::configure(basePath: dirname(__DIR__))
             }
         });
     })->create();
-
-/**
- * Получить HTTP статус код для исключения
- */
-function getStatusCode(Throwable $e): int
-{
-    if ($e instanceof \Illuminate\Validation\ValidationException) {
-        return 422;
-    }
-    if ($e instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {
-        return 404;
-    }
-    if ($e instanceof \Illuminate\Auth\AuthenticationException) {
-        return 401;
-    }
-    if ($e instanceof \Illuminate\Auth\Access\AuthorizationException) {
-        return 403;
-    }
-    if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException) {
-        return 404;
-    }
-    if ($e instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException) {
-        return 405;
-    }
-    if ($e instanceof \Symfony\Component\HttpKernel\Exception\HttpException) {
-        return $e->getStatusCode();
-    }
-
-    return 500;
-}
 
 
 
